@@ -1,0 +1,3320 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DFrame.DAL</name>
+    </assembly>
+    <members>
+        <member name="T:DFrame.DAL.Access.AccessHelper">
+            <summary>
+            Access帮助类
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Access.AccessHelper.connstr">
+            <summary>
+            数据库链接
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.#ctor">
+            <summary>
+            链接字符串从config中获取 name=AccessConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.#ctor(System.String)">
+            <summary>
+            初始化连接字符串
+            Access2003 Provider=Microsoft.Jet.OLEDB.4.0;Data Source = XXX.mdb;
+            Access2007 Provider=Microsoft.ACE.OLEDB.12.0;Data Source = XXX.accdb;
+            </summary>
+            <param name="conn">链接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.openConnection">
+            <summary>
+            打开数据库
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.closeConnection">
+            <summary>
+            关闭数据库
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.DataAdapterRead(System.String)">
+            <summary>
+            执行指定连接ExecuteDataTable方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.ExecuteNonQuery(System.String)">
+            <summary>
+            执行指定连接ExecuteNonQuery方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.ExecuteReader(System.String)">
+            <summary>
+            执行指定连接ExecuteReader方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.Access.AccessHelper.ExecuteScalar(System.String)">
+            <summary>
+            执行指定连接ExecuteScalar方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="T:DFrame.DAL.Access.Interface.IAccessHelper">
+            <summary>
+            Access帮助接口
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Access.Interface.IAccessHelper.ExecuteNonQuery(System.String)">
+            <summary>
+            执行指定连接ExecuteNonQuery方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.Access.Interface.IAccessHelper.ExecuteReader(System.String)">
+            <summary>
+            执行指定连接ExecuteReader方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.Access.Interface.IAccessHelper.ExecuteScalar(System.String)">
+            <summary>
+            执行指定连接ExecuteScalar方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.Access.Interface.IAccessHelper.DataAdapterRead(System.String)">
+            <summary>
+            执行指定连接ExecuteDataTable方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="T:DFrame.DAL.Common">
+            <summary>
+            DAL公共法法
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Common.GetSQLServerFieldTypeStr(System.Reflection.PropertyInfo)">
+            <summary>
+            获取SQLServer属性类型
+            </summary>
+            <param name="prop">字段属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Common.GetMySQLFieldTypeStr(System.Reflection.PropertyInfo)">
+            <summary>
+            获取MySQL属性类型
+            </summary>
+            <param name="prop">字段属性信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.IFactory.TestConnection">
+            <summary>
+            测试链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.IFactory.TestTableExistence(System.String)">
+            <summary>
+            判断数据表是否存在
+            </summary>
+            <param name="tableName">数据库链接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.IFactory.CreateDBTable(System.Collections.Generic.Dictionary{System.Type,System.Reflection.PropertyInfo[]})">
+            <summary>
+            创建表
+            </summary>
+            <param name="dic">所有应有表</param>
+        </member>
+        <member name="M:DFrame.DAL.IFactory.TestTableFieldExistence(System.Collections.Generic.KeyValuePair{System.Type,System.Reflection.PropertyInfo[]},System.Collections.Generic.List{DFrame.DAL.ChangeField}@)">
+            <summary>
+            获取将添加SQL脚本
+            </summary>
+            <param name="tab">表-表字段</param>
+            <param name="list">添加脚本</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.IFactory.AddSubColumn(System.Collections.Generic.List{DFrame.DAL.ChangeField})">
+            <summary>
+            添加、删除table列
+            </summary>
+            <param name="list">操作列表</param>
+        </member>
+        <member name="M:DFrame.DAL.IFactory.CreateForeignKeys(System.Collections.Generic.List{DFrame.DAL.ChangeField})">
+            <summary>
+            生成外键关系
+            </summary>
+            <param name="list">将生成外键关系</param>
+        </member>
+        <member name="T:DFrame.DAL.MySQLFactory">
+            <summary>
+            MySQL脚本语法库+加工厂
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQLFactory.CreateFactory(System.String,System.String)">
+            <summary>
+            创建Factory实体对象
+            </summary>
+            <param name="connStr"></param>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQLFactory.TestConnection">
+            <summary>
+            测试链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQLFactory.TestTableExistence(System.String)">
+            <summary>
+            判断数据表是否存在
+            </summary>
+            <param name="tableName">数据库链接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQLFactory.CreateDBTable(System.Collections.Generic.Dictionary{System.Type,System.Reflection.PropertyInfo[]})">
+            <summary>
+            创建表 只包含int主键
+            </summary>
+            <param name="dic">所有应有表</param>
+        </member>
+        <member name="M:DFrame.DAL.MySQLFactory.TestTableFieldExistence(System.Collections.Generic.KeyValuePair{System.Type,System.Reflection.PropertyInfo[]},System.Collections.Generic.List{DFrame.DAL.ChangeField}@)">
+            <summary>
+            获取将添加SQL脚本
+            </summary>
+            <param name="tab">表-表字段</param>
+            <param name="list">添加脚本</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQLFactory.DFrame#DAL#IFactory#AddSubColumn(System.Collections.Generic.List{DFrame.DAL.ChangeField})">
+            <summary>
+            添加、删除table列
+            </summary>
+            <param name="list">操作列表</param>
+        </member>
+        <member name="M:DFrame.DAL.MySQLFactory.CreateForeignKeys(System.Collections.Generic.List{DFrame.DAL.ChangeField})">
+            <summary>
+            生成外键关系
+            </summary>
+            <param name="list">将生成外键关系</param>
+        </member>
+        <member name="T:DFrame.DAL.MySQL.Base">
+            <summary>
+            Dapper基类
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.MySQL.Base.connstr">
+            <summary>
+            数据库链接
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Base.#ctor">
+            <summary>
+            链接字符串从config中获取 name=MySQLConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Base.#ctor(System.String)">
+            <summary>
+            初始化连接字符串
+            </summary>
+            <param name="conn">链接字符串</param>
+        </member>
+        <member name="F:DFrame.DAL.MySQL.Base.LockUp">
+            <summary>
+            数据库操作加锁用 static修饰会在整个程序池里共享，所以对所有iis请求起作用。
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Base.OpenConnection">
+            <summary>
+            数据库建立链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DFrame.DAL.MySQL.Base.DataBaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Extend.GetWhereSql(System.Object,System.String)">
+            <summary>
+            获取（带值）and查询条件
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="model">实体类条件</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Extend.GetWhereSql(System.Collections.Generic.List{System.Object},System.String)">
+            <summary>
+            获取（带值）and查询条件 多个实体间or查询
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="list">实体类条件集合</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Extend.GetWhereStr(System.Object[])">
+            <summary>
+            获取（不带值）and查询条件
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="obj">条件集合用户模糊查询</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Extend.GetWhereStr(System.Object)">
+            <summary>
+            获取（不带值）and查询条件
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="obj">条件查询实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Extend.GetValuesStr(System.Object)">
+            <summary>
+            获取（不带值）新增实体字段名称，带@
+            </summary>
+            <param name="obj">新增实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Extend.GetKeysStr(System.Object)">
+            <summary>
+            获取 新增实体字段名称
+            </summary>
+            <param name="obj">新增实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Extend.GetSetStr(System.Object)">
+            <summary>
+            获取（不带值）更新实体字段
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.CacheParameters(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            隐藏SqlParameter,键为key
+            </summary>
+            <param name="cacheKey">取键key</param>
+            <param name="commandParameters">将要隐藏SqlParameter[]</param>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.GetCachedParameters(System.String)">
+            <summary>
+            输入key提取隐藏SqlParameter[]
+            </summary>
+            <param name = "cacheKey" > SqlParameter[]的key</param>
+            <returns>返回key的SQLParameter</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteNonQuery(System.String,System.Boolean,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行自定义连接的ExecuteNonQuery方法
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句或存储过程名称</param>
+            <param name="comType">Sql语句类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteNonQueryText(System.Boolean,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteNonQueryText(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteNonQueryStoredProcedure(System.Boolean,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteNonQueryStoredProcedure(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteNonQuery(System.String)">
+            <summary>
+            执行指定连接ExecuteNonQuery方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteReader(System.String,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteReader方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteReaderText(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderText方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteReaderStoredProcedure(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderStoredProcedure方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteReader(System.String)">
+            <summary>
+            执行指定连接ExecuteReader方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteScalar(System.String,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteScalar方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteScalarText(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarText方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteScalarStoredProcedure(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarStoredProcedure方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ExecuteScalar(System.String)">
+            <summary>
+            执行指定连接ExecuteScalar方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.DataAdapterRead(System.String,System.String,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+             <summary>
+            查询自定义连接的ExecuteDataTable方法，返回查询数据表
+            参数数组形式赋值
+             </summary>
+             <param name="connectionString">自定义连接字符串</param>
+             <param name="tableName">自定义表格名称</param>
+             <param name="commandText">Sql语句或存储过程名称</param>
+             <param name="comType">类型</param>
+             <param name="commandParameters">参数数组</param>
+             <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.DataAdapterReadText(System.String,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTable方法
+            参数数组形式赋值
+            </summary>
+            <param name="tableName">自定义表格名称</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.DataAdapterReadStoredProcedure(System.String,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTableStoredProcedure方法
+            参数数组形式赋值
+            </summary>
+            <param name="tablename">自定义表格名称</param>
+            <param name="commandText">存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回表集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.DataAdapterRead(System.String)">
+            <summary>
+            执行指定连接ExecuteDataTable方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.IMySQLHelper.ProcessNull(MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            参数控制，判断parameter是否存在null，如果有改为DBNull
+            </summary>
+            <param name="dataParameter">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.DAL.MySQL.Interface.ISqlDapperExecute">
+            <summary>
+            dapper执行接口
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Insert``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增单条记录
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Insert``1(``0[],System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增多条记录
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段集合</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Delete``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Delete``1(System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Update``1(``0,System.Collections.Generic.List{System.Object},System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件集合（非class）</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Update``1(``0,System.Object,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Update``1(``0,System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperExecute.Execute(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="T:DFrame.DAL.MySQL.Interface.ISqlDapperQuery">
+            <summary>
+            dapper查询接口
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModelList``1(``0[],System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件,数组 一般用户模糊查询</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModelList``1(``0,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModelList``1(System.String,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql条件</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModelList``1(System.Int64@,``0[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>条件
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件（数组有效长度2）一般用户模糊查询</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModelList``1(System.Int64@,``0,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>条件（数组有效长度2）一般用户模糊查询
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModelList``1(System.Int64@,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">sql条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModel``1(``0)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.GetModel``1(System.String)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.ExecuteScalar``1(System.String,System.String)">
+            <summary>
+            获取值（单）
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段</param>
+            <param name="where">sql查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.ExecuteScalar``1(System.String,``0)">
+            <summary>
+            获取值（单）
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段</param>
+            <param name="where">查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.ExecuteScalar(System.String)">
+            <summary>
+            获取值（单）
+            </summary>
+            <param name="commandText">SQL语句</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.Interface.ISqlDapperQuery.Query(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="T:DFrame.DAL.MySQL.MySQLHelper">
+            <summary>
+            MySQL帮助类
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.#ctor">
+            <summary>
+            初始化DapperExecute,连接字符串访问webconfig的MySQLConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.#ctor(System.String)">
+            <summary>
+            初始化DapperExecute数据库链接字符串
+            </summary>
+            <param name="conn">MySQL连接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.CacheParameters(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            隐藏SqlParameter,键为key
+            </summary>
+            <param name="cacheKey">取键key</param>
+            <param name="commandParameters">将要隐藏SqlParameter[]</param>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.GetCachedParameters(System.String)">
+            <summary>
+            输入key提取隐藏SqlParameter[]
+            </summary>
+            <param name = "cacheKey" > SqlParameter[]的key</param>
+            <returns>返回key的SQLParameter</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteNonQuery(System.String,System.Boolean,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行自定义连接的ExecuteNonQuery方法
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句或存储过程名称</param>
+            <param name="comType">Sql语句类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteNonQueryText(System.Boolean,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteNonQueryText(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteNonQueryStoredProcedure(System.Boolean,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteNonQueryStoredProcedure(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteNonQuery(System.String)">
+            <summary>
+            执行指定连接ExecuteNonQuery方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteReader(System.String,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteReader方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteReaderText(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderText方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteReaderStoredProcedure(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderStoredProcedure方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteReader(System.String)">
+            <summary>
+            执行指定连接ExecuteReader方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteScalar(System.String,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteScalar方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteScalarText(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarText方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteScalarStoredProcedure(System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarStoredProcedure方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ExecuteScalar(System.String)">
+            <summary>
+            执行指定连接ExecuteScalar方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.DataAdapterRead(System.String,System.String,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+             <summary>
+            查询自定义连接的ExecuteDataTable方法，返回查询数据表
+            参数数组形式赋值
+             </summary>
+             <param name="connectionString">自定义连接字符串</param>
+             <param name="tableName">自定义表格名称</param>
+             <param name="commandText">Sql语句或存储过程名称</param>
+             <param name="comType">类型</param>
+             <param name="commandParameters">参数数组</param>
+             <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.DataAdapterReadText(System.String,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTable方法
+            参数数组形式赋值
+            </summary>
+            <param name="tableName">自定义表格名称</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.DataAdapterReadStoredProcedure(System.String,System.String,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTableStoredProcedure方法
+            参数数组形式赋值
+            </summary>
+            <param name="tableName">表名</param>
+            <param name="commandText">存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回表集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.DataAdapterRead(System.String)">
+            <summary>
+            执行指定连接ExecuteDataTable方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.ProcessNull(MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            参数控制，判断parameter是否存在null，如果有改为DBNull
+            </summary>
+            <param name="dataParameter">参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.MySQLHelper.SetVariable(MySql.Data.MySqlClient.MySqlCommand,MySql.Data.MySqlClient.MySqlConnection,System.String,System.Data.CommandType,MySql.Data.MySqlClient.MySqlParameter[])">
+            <summary>
+            赋值参数
+            </summary>
+            <param name="com">command对象</param>
+            <param name="conn">connection对象</param>
+            <param name="commandText">Sql语句或者存储过程</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+        </member>
+        <member name="T:DFrame.DAL.MySQL.SqlDapperExecute">
+            <summary>
+            MySQL Dapper
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.#ctor">
+            <summary>
+            初始化DapperExecute,连接字符串访问webconfig的MySQLConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.#ctor(System.String)">
+            <summary>
+            初始化DapperExecute数据库链接字符串
+            </summary>
+            <param name="conn">MySQL连接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Insert``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增单条记录
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Insert``1(``0[],System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增多条记录(注意！新增数据依据第一条记录的有效数据字段）
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段集合</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Delete``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Delete``1(System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数，-1出错</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Update``1(``0,System.Collections.Generic.List{System.Object},System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件集合（非class集合）</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Update``1(``0,System.Object,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Update``1(``0,System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperExecute.Execute(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="T:DFrame.DAL.MySQL.SqlDapperQuery">
+            <summary>
+            MySQL Dapper
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.#ctor">
+            <summary>
+            初始化DapperExecute,连接字符串访问webconfig的MySQLConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.#ctor(System.String)">
+            <summary>
+            初始化DapperExecute数据库链接字符串
+            </summary>
+            <param name="conn">MySQL连接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModelList``1(System.Int64@,``0[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件（数组有效长度2）一般用户模糊查询</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModelList``1(System.Int64@,``0,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModelList``1(System.Int64@,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">sql条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModel``1(``0)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModel``1(System.String)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.ExecuteScalar``1(System.String,System.String)">
+            <summary>
+            获取值
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段(单个字段)</param>
+            <param name="where">sql查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.ExecuteScalar``1(System.String,``0)">
+            <summary>
+            获取值（单）
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段</param>
+            <param name="where">查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.ExecuteScalar(System.String)">
+            <summary>
+            获取值（单）
+            </summary>
+            <param name="commandText">SQL语句</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.Query(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModelList``1(``0[],System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件,数组 一般用户模糊查询</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModelList``1(``0,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.MySQL.SqlDapperQuery.GetModelList``1(System.String,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql条件</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLFactory">
+            <summary>
+            数据库加工厂
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.SQLFactory.DatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.SQLFactory.DatabaseType.MSSQLServer">
+            <summary>
+            MSSQLServer
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.SQLFactory.DatabaseType.MySQL">
+            <summary>
+            MySQL
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.SQLFactory.classPropertiesDic">
+            <summary>
+            公共实体类下所有有效公共属性
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.SQLFactory.publicClass">
+            <summary>
+            公共实体类
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLFactory.GetValidInfos">
+            <summary>
+            从指定Assembly下获取有效数据信息
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.SQLFactory.changeField">
+            <summary>
+            将执行生成表字段
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.SQLFactory.foreignKeys">
+            <summary>
+            将生成外键关系字段
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLFactory.Create(DFrame.DAL.SQLFactory.DatabaseType,System.String,System.Reflection.Assembly,System.String)">
+            <summary>
+            创建数据库结构
+            </summary>
+            <param name="databaseType">数据库类型</param>
+            <param name="databaseName">数据库名称</param>
+            <param name="assembly">目标实体类</param>
+            <param name="connString">链接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLFactory.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.ChangeField">
+            <summary>
+            将变更的表和字段
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.ChangeField.type">
+            <summary>
+            表格
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.ChangeField.propertyInfo">
+            <summary>
+            字段属性
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.ChangeField.action">
+            <summary>
+            执行类型 true添加 false减去
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.ChangeField.fieldName">
+            <summary>
+            减去用字段名称
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.ChangeField.foreignKeyType">
+            <summary>
+            主键表
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.CommandFlags">
+            <summary>
+            Additional state flags that control command behaviour
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.CommandFlags.None">
+            <summary>
+            No additonal flags
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.CommandFlags.Buffered">
+            <summary>
+            Should data be buffered before returning?
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.CommandFlags.Pipelined">
+            <summary>
+            Can async queries be pipelined?
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.CommandFlags.NoCache">
+            <summary>
+            Should the plan cache be bypassed?
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.CommandDefinition">
+            <summary>
+            Represents the key aspects of a sql operation
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.CommandText">
+            <summary>
+            The command (sql or a stored-procedure name) to execute
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.Parameters">
+            <summary>
+            The parameters associated with the command
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.Transaction">
+            <summary>
+            The active transaction for the command
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.CommandTimeout">
+            <summary>
+            The effective timeout for the command
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.CommandType">
+            <summary>
+            The type of command that the command-text represents
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.Buffered">
+            <summary>
+            Should data be buffered before returning?
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.AddToCache">
+            <summary>
+            Should the plan for this query be cached?
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.Flags">
+            <summary>
+            Additional state flags against this command
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.CommandDefinition.Pipelined">
+            <summary>
+            Can async queries be pipelined?
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.CommandDefinition.#ctor(System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType},DFrame.DAL.Dapper.CommandFlags)">
+            <summary>
+            Initialize the command definition
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper">
+            <summary>
+            Dapper, a light weight object mapper for ADO.NET
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.IDynamicParameters">
+            <summary>
+            Implement this interface to pass an arbitrary db specific set of parameters to Dapper
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.IDynamicParameters.AddParameters(System.Data.IDbCommand,DFrame.DAL.Dapper.SqlMapper.Identity)">
+            <summary>
+            Add all the parameters needed to the command just before it executes
+            </summary>
+            <param name="command">The raw command prior to execution</param>
+            <param name="identity">Information about the query</param>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.IParameterLookup">
+            <summary>
+            Extends IDynamicParameters providing by-name lookup of parameter values
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.IParameterLookup.Item(System.String)">
+            <summary>
+            Get the value of the specified parameter (return null if not found)
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.IParameterCallbacks">
+            <summary>
+            Extends IDynamicParameters with facitilies for executing callbacks after commands have completed
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.IParameterCallbacks.OnCompleted">
+            <summary>
+            Invoked when the command has executed
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.ICustomQueryParameter">
+            <summary>
+            Implement this interface to pass an arbitrary db specific parameter to Dapper
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ICustomQueryParameter.AddParameter(System.Data.IDbCommand,System.String)">
+            <summary>
+            Add the parameter needed to the command before it executes
+            </summary>
+            <param name="command">The raw command prior to execution</param>
+            <param name="name">Parameter name</param>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.ITypeHandler">
+            <summary>
+            Implement this interface to perform custom type-based parameter handling and value parsing
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ITypeHandler.SetValue(System.Data.IDbDataParameter,System.Object)">
+            <summary>
+            Assign the value of a parameter before a command executes
+            </summary>
+            <param name="parameter">The parameter to configure</param>
+            <param name="value">Parameter value</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ITypeHandler.Parse(System.Type,System.Object)">
+            <summary>
+            Parse a database value back to a typed value
+            </summary>
+            <param name="value">The value from the database</param>
+            <param name="destinationType">The type to parse to</param>
+            <returns>The typed value</returns>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.UdtTypeHandler">
+            <summary>
+            A type handler for data-types that are supported by the underlying provider, but which need
+            a well-known UdtTypeName to be specified
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.UdtTypeHandler.#ctor(System.String)">
+            <summary>
+            Creates a new instance of UdtTypeHandler with the specified UdtTypeName
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.TypeHandler`1">
+            <summary>
+            Base-class for simple type-handlers
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.TypeHandler`1.SetValue(System.Data.IDbDataParameter,`0)">
+            <summary>
+            Assign the value of a parameter before a command executes
+            </summary>
+            <param name="parameter">The parameter to configure</param>
+            <param name="value">Parameter value</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.TypeHandler`1.Parse(System.Object)">
+            <summary>
+            Parse a database value back to a typed value
+            </summary>
+            <param name="value">The value from the database</param>
+            <returns>The typed value</returns>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.ITypeMap">
+            <summary>
+            Implement this interface to change default mapping of reader columns to type memebers
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ITypeMap.FindConstructor(System.String[],System.Type[])">
+            <summary>
+            Finds best constructor
+            </summary>
+            <param name="names">DataReader column names</param>
+            <param name="types">DataReader column types</param>
+            <returns>Matching constructor or default one</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ITypeMap.GetConstructorParameter(System.Reflection.ConstructorInfo,System.String)">
+            <summary>
+            Gets mapping for constructor parameter
+            </summary>
+            <param name="constructor">Constructor to resolve</param>
+            <param name="columnName">DataReader column name</param>
+            <returns>Mapping implementation</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ITypeMap.GetMember(System.String)">
+            <summary>
+            Gets member mapping for column
+            </summary>
+            <param name="columnName">DataReader column name</param>
+            <returns>Mapping implementation</returns>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.IMemberMap">
+            <summary>
+            Implements this interface to provide custom member mapping
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.IMemberMap.ColumnName">
+            <summary>
+            Source DataReader column name
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.IMemberMap.MemberType">
+            <summary>
+             Target member type
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.IMemberMap.Property">
+            <summary>
+            Target property
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.IMemberMap.Field">
+            <summary>
+            Target field
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.IMemberMap.Parameter">
+            <summary>
+            Target constructor parameter
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.Link`2">
+            <summary>
+            This is a micro-cache; suitable when the number of terms is controllable (a few hundred, for example),
+            and strictly append-only; you cannot change existing values. All key matches are on **REFERENCE**
+            equality. The type is fully thread-safe.
+            </summary>
+        </member>
+        <member name="E:DFrame.DAL.Dapper.SqlMapper.QueryCachePurged">
+            <summary>
+            Called if the query cache is purged via PurgeQueryCache
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.PurgeQueryCache">
+            <summary>
+            Purge the query cache 
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GetCachedSQLCount">
+            <summary>
+            Return a count of all the cached queries by dapper
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GetCachedSQL(System.Int32)">
+            <summary>
+            Return a list of all the queries cached by dapper
+            </summary>
+            <param name="ignoreHitCountAbove"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GetHashCollissions">
+            <summary>
+            Deep diagnostics only: find any hash collisions in the cache
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ResetTypeHandlers">
+            <summary>
+            Clear the registered type handlers
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.AddTypeMap(System.Type,System.Data.DbType)">
+            <summary>
+            Configire the specified type to be mapped to a given db-type
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.AddTypeHandler(System.Type,DFrame.DAL.Dapper.SqlMapper.ITypeHandler)">
+            <summary>
+            Configire the specified type to be processed by a custom handler
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.AddTypeHandlerImpl(System.Type,DFrame.DAL.Dapper.SqlMapper.ITypeHandler,System.Boolean)">
+            <summary>
+            Configire the specified type to be processed by a custom handler
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.AddTypeHandler``1(DFrame.DAL.Dapper.SqlMapper.TypeHandler{``0})">
+            <summary>
+            Configire the specified type to be processed by a custom handler
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.TypeHandlerCache`1">
+            <summary>
+            Not intended for direct usage
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.TypeHandlerCache`1.Parse(System.Object)">
+            <summary>
+            Not intended for direct usage
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.TypeHandlerCache`1.SetValue(System.Data.IDbDataParameter,System.Object)">
+            <summary>
+            Not intended for direct usage
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GetDbType(System.Object)">
+            <summary>
+            Get the DbType that maps to a given value
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.Identity">
+            <summary>
+            Identity of a cached query in Dapper, used for extensability
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Identity.ForDynamicParameters(System.Type)">
+            <summary>
+            Create an identity for use with DynamicParameters, internal use only
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Identity.Equals(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.Identity.sql">
+            <summary>
+            The sql
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.Identity.commandType">
+            <summary>
+            The command type 
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.Identity.hashCode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.Identity.gridIndex">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.Identity.type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.Identity.connectionString">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.Identity.parametersType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Identity.GetHashCode">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Identity.Equals(DFrame.DAL.Dapper.SqlMapper.Identity)">
+            <summary>
+            Compare 2 Identity objects
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Execute(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Execute parameterized SQL  
+            </summary>
+            <returns>Number of rows affected</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Execute(System.Data.IDbConnection,DFrame.DAL.Dapper.CommandDefinition)">
+            <summary>
+            Execute parameterized SQL  
+            </summary>
+            <returns>Number of rows affected</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ExecuteScalar(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Execute parameterized SQL that selects a single value
+            </summary>
+            <returns>The first cell selected</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ExecuteScalar``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Execute parameterized SQL that selects a single value
+            </summary>
+            <returns>The first cell selected</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ExecuteScalar(System.Data.IDbConnection,DFrame.DAL.Dapper.CommandDefinition)">
+            <summary>
+            Execute parameterized SQL that selects a single value
+            </summary>
+            <returns>The first cell selected</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ExecuteScalar``1(System.Data.IDbConnection,DFrame.DAL.Dapper.CommandDefinition)">
+            <summary>
+            Execute parameterized SQL that selects a single value
+            </summary>
+            <returns>The first cell selected</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ExecuteReader(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Execute parameterized SQL and return an <see cref="T:System.Data.IDataReader"/>
+            </summary>
+            <returns>An <see cref="T:System.Data.IDataReader"/> that can be used to iterate over the results of the SQL query.</returns>
+            <remarks>
+            This is typically used when the results of a query are not processed by Dapper, for example, used to fill a <see cref="T:System.Data.DataTable"/>
+            or <see cref="T:System.Data.DataSet"/>.
+            </remarks>
+            <example>
+            <code>
+            <![CDATA[
+            DataTable table = new DataTable("MyTable");
+            using (var reader = ExecuteReader(cnn, sql, param))
+            {
+                table.Load(reader);
+            }
+            ]]>
+            </code>
+            </example>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ExecuteReader(System.Data.IDbConnection,DFrame.DAL.Dapper.CommandDefinition)">
+            <summary>
+            Execute parameterized SQL and return an <see cref="T:System.Data.IDataReader"/>
+            </summary>
+            <returns>An <see cref="T:System.Data.IDataReader"/> that can be used to iterate over the results of the SQL query.</returns>
+            <remarks>
+            This is typically used when the results of a query are not processed by Dapper, for example, used to fill a <see cref="T:System.Data.DataTable"/>
+            or <see cref="T:System.Data.DataSet"/>.
+            </remarks>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ExecuteReader(System.Data.IDbConnection,DFrame.DAL.Dapper.CommandDefinition,System.Data.CommandBehavior)">
+            <summary>
+            Execute parameterized SQL and return an <see cref="T:System.Data.IDataReader"/>
+            </summary>
+            <returns>An <see cref="T:System.Data.IDataReader"/> that can be used to iterate over the results of the SQL query.</returns>
+            <remarks>
+            This is typically used when the results of a query are not processed by Dapper, for example, used to fill a <see cref="T:System.Data.DataTable"/>
+            or <see cref="T:System.Data.DataSet"/>.
+            </remarks>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Return a list of dynamic objects, reader is closed after the call
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``1(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Executes a query, returning the data typed as per T
+            </summary>
+            <remarks>the dynamic param may seem a bit odd, but this works around a major usability issue in vs, if it is Object vs completion gets annoying. Eg type new [space] get new object</remarks>
+            <returns>A sequence of data of the supplied type; if a basic type (int, string, etc) is queried then the data from the first column in assumed, otherwise an instance is
+            created per row, and a direct column-name===member-name mapping is assumed (case insensitive).
+            </returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query(System.Data.IDbConnection,System.Type,System.String,System.Object,System.Data.IDbTransaction,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Executes a query, returning the data typed as per the Type suggested
+            </summary>
+            <returns>A sequence of data of the supplied type; if a basic type (int, string, etc) is queried then the data from the first column in assumed, otherwise an instance is
+            created per row, and a direct column-name===member-name mapping is assumed (case insensitive).
+            </returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``1(System.Data.IDbConnection,DFrame.DAL.Dapper.CommandDefinition)">
+            <summary>
+            Executes a query, returning the data typed as per T
+            </summary>
+            <remarks>the dynamic param may seem a bit odd, but this works around a major usability issue in vs, if it is Object vs completion gets annoying. Eg type new [space] get new object</remarks>
+            <returns>A sequence of data of the supplied type; if a basic type (int, string, etc) is queried then the data from the first column in assumed, otherwise an instance is
+            created per row, and a direct column-name===member-name mapping is assumed (case insensitive).
+            </returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.QueryMultiple(System.Data.IDbConnection,System.String,System.Object,System.Data.IDbTransaction,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Execute a command that returns multiple result sets, and access each in turn
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.QueryMultiple(System.Data.IDbConnection,DFrame.DAL.Dapper.CommandDefinition)">
+            <summary>
+            Execute a command that returns multiple result sets, and access each in turn
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``3(System.Data.IDbConnection,System.String,System.Func{``0,``1,``2},System.Object,System.Data.IDbTransaction,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Maps a query to objects
+            </summary>
+            <typeparam name="TFirst">The first type in the recordset</typeparam>
+            <typeparam name="TSecond">The second type in the recordset</typeparam>
+            <typeparam name="TReturn">The return type</typeparam>
+            <param name="cnn"></param>
+            <param name="sql"></param>
+            <param name="map"></param>
+            <param name="param"></param>
+            <param name="transaction"></param>
+            <param name="buffered"></param>
+            <param name="splitOn">The Field we should split and read the second object from (default: id)</param>
+            <param name="commandTimeout">Number of seconds before command execution timeout</param>
+            <param name="commandType">Is it a stored proc or a batch?</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``4(System.Data.IDbConnection,System.String,System.Func{``0,``1,``2,``3},System.Object,System.Data.IDbTransaction,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Maps a query to objects
+            </summary>
+            <typeparam name="TFirst"></typeparam>
+            <typeparam name="TSecond"></typeparam>
+            <typeparam name="TThird"></typeparam>
+            <typeparam name="TReturn"></typeparam>
+            <param name="cnn"></param>
+            <param name="sql"></param>
+            <param name="map"></param>
+            <param name="param"></param>
+            <param name="transaction"></param>
+            <param name="buffered"></param>
+            <param name="splitOn">The Field we should split and read the second object from (default: id)</param>
+            <param name="commandTimeout">Number of seconds before command execution timeout</param>
+            <param name="commandType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``5(System.Data.IDbConnection,System.String,System.Func{``0,``1,``2,``3,``4},System.Object,System.Data.IDbTransaction,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Perform a multi mapping query with 4 input parameters
+            </summary>
+            <typeparam name="TFirst"></typeparam>
+            <typeparam name="TSecond"></typeparam>
+            <typeparam name="TThird"></typeparam>
+            <typeparam name="TFourth"></typeparam>
+            <typeparam name="TReturn"></typeparam>
+            <param name="cnn"></param>
+            <param name="sql"></param>
+            <param name="map"></param>
+            <param name="param"></param>
+            <param name="transaction"></param>
+            <param name="buffered"></param>
+            <param name="splitOn"></param>
+            <param name="commandTimeout"></param>
+            <param name="commandType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``6(System.Data.IDbConnection,System.String,System.Func{``0,``1,``2,``3,``4,``5},System.Object,System.Data.IDbTransaction,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Perform a multi mapping query with 5 input parameters
+            </summary>
+            <typeparam name="TFirst"></typeparam>
+            <typeparam name="TSecond"></typeparam>
+            <typeparam name="TThird"></typeparam>
+            <typeparam name="TFourth"></typeparam>
+            <typeparam name="TFifth"></typeparam>
+            <typeparam name="TReturn"></typeparam>
+            <param name="cnn"></param>
+            <param name="sql"></param>
+            <param name="map"></param>
+            <param name="param"></param>
+            <param name="transaction"></param>
+            <param name="buffered"></param>
+            <param name="splitOn"></param>
+            <param name="commandTimeout"></param>
+            <param name="commandType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``7(System.Data.IDbConnection,System.String,System.Func{``0,``1,``2,``3,``4,``5,``6},System.Object,System.Data.IDbTransaction,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Perform a multi mapping query with 6 input parameters
+            </summary>
+            <typeparam name="TFirst"></typeparam>
+            <typeparam name="TSecond"></typeparam>
+            <typeparam name="TThird"></typeparam>
+            <typeparam name="TFourth"></typeparam>
+            <typeparam name="TFifth"></typeparam>
+            <typeparam name="TSixth"></typeparam>
+            <typeparam name="TReturn"></typeparam>
+            <param name="cnn"></param>
+            <param name="sql"></param>
+            <param name="map"></param>
+            <param name="param"></param>
+            <param name="transaction"></param>
+            <param name="buffered"></param>
+            <param name="splitOn"></param>
+            <param name="commandTimeout"></param>
+            <param name="commandType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``8(System.Data.IDbConnection,System.String,System.Func{``0,``1,``2,``3,``4,``5,``6,``7},System.Object,System.Data.IDbTransaction,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Perform a multi mapping query with 7 input parameters
+            </summary>
+            <typeparam name="TFirst"></typeparam>
+            <typeparam name="TSecond"></typeparam>
+            <typeparam name="TThird"></typeparam>
+            <typeparam name="TFourth"></typeparam>
+            <typeparam name="TFifth"></typeparam>
+            <typeparam name="TSixth"></typeparam>
+            <typeparam name="TSeventh"></typeparam>
+            <typeparam name="TReturn"></typeparam>
+            <param name="cnn"></param>
+            <param name="sql"></param>
+            <param name="map"></param>
+            <param name="param"></param>
+            <param name="transaction"></param>
+            <param name="buffered"></param>
+            <param name="splitOn"></param>
+            <param name="commandTimeout"></param>
+            <param name="commandType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Query``1(System.Data.IDbConnection,System.String,System.Type[],System.Func{System.Object[],``0},System.Object,System.Data.IDbTransaction,System.Boolean,System.String,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            Perform a multi mapping query with arbitrary input parameters
+            </summary>
+            <typeparam name="TReturn">The return type</typeparam>
+            <param name="cnn"></param>
+            <param name="sql"></param>
+            <param name="types">array of types in the recordset</param>
+            <param name="map"></param>
+            <param name="param"></param>
+            <param name="transaction"></param>
+            <param name="buffered"></param>
+            <param name="splitOn">The Field we should split and read the second object from (default: id)</param>
+            <param name="commandTimeout">Number of seconds before command execution timeout</param>
+            <param name="commandType">Is it a stored proc or a batch?</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ReadChar(System.Object)">
+            <summary>
+            Internal use only
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ReadNullableChar(System.Object)">
+            <summary>
+            Internal use only
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.FindOrAddParameter(System.Data.IDataParameterCollection,System.Data.IDbCommand,System.String)">
+            <summary>
+            Internal use only
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.PackListParameters(System.Data.IDbCommand,System.String,System.Object)">
+            <summary>
+            Internal use only
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.LiteralToken">
+            <summary>
+            Represents a placeholder for a value that should be replaced as a literal value in the resulting sql
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.LiteralToken.Token">
+            <summary>
+            The text in the original command that should be replaced
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.LiteralToken.Member">
+            <summary>
+            The name of the member referred to by the token
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ReplaceLiterals(DFrame.DAL.Dapper.SqlMapper.IParameterLookup,System.Data.IDbCommand)">
+            <summary>
+            Replace all literal tokens with their text form
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.Format(System.Object)">
+            <summary>
+            Convert numeric values to their string form for SQL literal purposes
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.CreateParamInfoGenerator(DFrame.DAL.Dapper.SqlMapper.Identity,System.Boolean,System.Boolean)">
+            <summary>
+            Internal use only
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GetTypeMap(System.Type)">
+            <summary>
+            Gets type-map for the given type
+            </summary>
+            <returns>Type map implementation, DefaultTypeMap instance if no override present</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.SetTypeMap(System.Type,DFrame.DAL.Dapper.SqlMapper.ITypeMap)">
+            <summary>
+            Set custom mapping for type deserializers
+            </summary>
+            <param name="type">Entity type to override</param>
+            <param name="map">Mapping rules impementation, null to remove custom map</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GetTypeDeserializer(System.Type,System.Data.IDataReader,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Internal use only
+            </summary>
+            <param name="type"></param>
+            <param name="reader"></param>
+            <param name="startBound"></param>
+            <param name="length"></param>
+            <param name="returnNullIfFirstMissing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.ThrowDataException(System.Exception,System.Int32,System.Data.IDataReader,System.Object)">
+            <summary>
+            Throws a data exception, only used internally
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.SqlMapper.DataTableTypeNameKey">
+            <summary>
+            Key used to indicate the type name associated with a DataTable
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.ConnectionStringComparer">
+            <summary>
+            How should connection strings be compared for equivalence? Defaults to StringComparer.Ordinal.
+            Providing a custom implementation can be useful for allowing multi-tenancy databases with identical
+            schema to share startegies. Note that usual equivalence rules apply: any equivalent connection strings
+            <b>MUST</b> yield the same hash-code.
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SqlMapper.GridReader">
+            <summary>
+            The grid reader provides interfaces for reading multiple result sets from a Dapper query 
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read(System.Boolean)">
+            <summary>
+            Read the next grid of results, returned as a dynamic object
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read``1(System.Boolean)">
+            <summary>
+            Read the next grid of results
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read(System.Type,System.Boolean)">
+            <summary>
+            Read the next grid of results
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read``3(System.Func{``0,``1,``2},System.String,System.Boolean)">
+            <summary>
+            Read multiple objects from a single recordset on the grid
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read``4(System.Func{``0,``1,``2,``3},System.String,System.Boolean)">
+            <summary>
+            Read multiple objects from a single recordset on the grid
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read``5(System.Func{``0,``1,``2,``3,``4},System.String,System.Boolean)">
+            <summary>
+            Read multiple objects from a single record set on the grid
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read``6(System.Func{``0,``1,``2,``3,``4,``5},System.String,System.Boolean)">
+            <summary>
+            Read multiple objects from a single record set on the grid
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read``7(System.Func{``0,``1,``2,``3,``4,``5,``6},System.String,System.Boolean)">
+            <summary>
+            Read multiple objects from a single record set on the grid
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Read``8(System.Func{``0,``1,``2,``3,``4,``5,``6,``7},System.String,System.Boolean)">
+            <summary>
+            Read multiple objects from a single record set on the grid
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SqlMapper.GridReader.IsConsumed">
+            <summary>
+            Has the underlying reader been consumed?
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GridReader.Dispose">
+            <summary>
+            Dispose the grid, closing and disposing both the underlying reader and command.
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.AsTableValuedParameter(System.Data.DataTable,System.String)">
+            <summary>
+            Used to pass a DataTable as a TableValuedParameter
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.SetTypeName(System.Data.DataTable,System.String)">
+            <summary>
+            Associate a DataTable with a type name
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SqlMapper.GetTypeName(System.Data.DataTable)">
+            <summary>
+            Fetch the type name associated with a DataTable
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.DynamicParameters">
+            <summary>
+            A bag of parameters that can be passed to the Dapper Query and Execute methods
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DynamicParameters.#ctor">
+            <summary>
+            construct a dynamic parameter bag
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DynamicParameters.#ctor(System.Object)">
+            <summary>
+            construct a dynamic parameter bag
+            </summary>
+            <param name="template">can be an anonymous type or a DynamicParameters bag</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DynamicParameters.AddDynamicParams(System.Object)">
+            <summary>
+            Append a whole object full of params to the dynamic
+            EG: AddDynamicParams(new {A = 1, B = 2}) // will add property A and B to the dynamic
+            </summary>
+            <param name="param"></param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DynamicParameters.Add(System.String,System.Object,System.Nullable{System.Data.DbType},System.Nullable{System.Data.ParameterDirection},System.Nullable{System.Int32})">
+            <summary>
+            Add a parameter to this dynamic parameter list
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="dbType"></param>
+            <param name="direction"></param>
+            <param name="size"></param>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.DynamicParameters.RemoveUnused">
+            <summary>
+            If true, the command-text is inspected and only values that are clearly used are included on the connection
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DynamicParameters.AddParameters(System.Data.IDbCommand,DFrame.DAL.Dapper.SqlMapper.Identity)">
+            <summary>
+            Add all the parameters needed to the command just before it executes
+            </summary>
+            <param name="command">The raw command prior to execution</param>
+            <param name="identity">Information about the query</param>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.DynamicParameters.ParameterNames">
+            <summary>
+            All the names of the param in the bag, use Get to yank them out
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DynamicParameters.Get``1(System.String)">
+            <summary>
+            Get the value of a parameter
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="name"></param>
+            <returns>The value, note DBNull.Value is not returned, instead the value is returned as null</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DynamicParameters.Output``1(``0,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Nullable{System.Data.DbType},System.Nullable{System.Int32})">
+            <summary>
+            Allows you to automatically populate a target property/field from output parameters. It actually
+            creates an InputOutput parameter, so you can still pass data in. 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="target">The object whose property/field you wish to populate.</param>
+            <param name="expression">A MemberExpression targeting a property/field of the target (or descendant thereof.)</param>
+            <param name="dbType"></param>
+            <param name="size">The size to set on the parameter. Defaults to 0, or DbString.DefaultLength in case of strings.</param>
+            <returns>The DynamicParameters instance</returns>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.TableValuedParameter">
+            <summary>
+            Used to pass a DataTable as a TableValuedParameter
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.TableValuedParameter.#ctor(System.Data.DataTable)">
+            <summary>
+            Create a new instance of TableValuedParameter
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.TableValuedParameter.#ctor(System.Data.DataTable,System.String)">
+            <summary>
+            Create a new instance of TableValuedParameter
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.DbString">
+            <summary>
+            This class represents a SQL string, it can be used if you need to denote your parameter is a Char vs VarChar vs nVarChar vs nChar
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.Dapper.DbString.DefaultLength">
+            <summary>
+            A value to set the default value of strings
+            going through Dapper. Default is 4000, any value larger than this
+            field will not have the default value applied.
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DbString.#ctor">
+            <summary>
+            Create a new DbString
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.DbString.IsAnsi">
+            <summary>
+            Ansi vs Unicode 
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.DbString.IsFixedLength">
+            <summary>
+            Fixed length 
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.DbString.Length">
+            <summary>
+            Length of the string -1 for max
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.DbString.Value">
+            <summary>
+            The value of the string
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DbString.AddParameter(System.Data.IDbCommand,System.String)">
+            <summary>
+            Add the parameter to the command... internal use only
+            </summary>
+            <param name="command"></param>
+            <param name="name"></param>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.FeatureSupport">
+            <summary>
+            Handles variances in features per DBMS
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.FeatureSupport.Get(System.Data.IDbConnection)">
+            <summary>
+            Gets the featureset based on the passed connection
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.FeatureSupport.Arrays">
+            <summary>
+            True if the db supports array columns e.g. Postgresql
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.SimpleMemberMap">
+            <summary>
+            Represents simple memeber map for one of target parameter or property or field to source DataReader column
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SimpleMemberMap.#ctor(System.String,System.Reflection.PropertyInfo)">
+            <summary>
+            Creates instance for simple property mapping
+            </summary>
+            <param name="columnName">DataReader column name</param>
+            <param name="property">Target property</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SimpleMemberMap.#ctor(System.String,System.Reflection.FieldInfo)">
+            <summary>
+            Creates instance for simple field mapping
+            </summary>
+            <param name="columnName">DataReader column name</param>
+            <param name="field">Target property</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.SimpleMemberMap.#ctor(System.String,System.Reflection.ParameterInfo)">
+            <summary>
+            Creates instance for simple constructor parameter mapping
+            </summary>
+            <param name="columnName">DataReader column name</param>
+            <param name="parameter">Target constructor parameter</param>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SimpleMemberMap.ColumnName">
+            <summary>
+            DataReader column name
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SimpleMemberMap.MemberType">
+            <summary>
+            Target member type
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SimpleMemberMap.Property">
+            <summary>
+            Target property
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SimpleMemberMap.Field">
+            <summary>
+            Target field
+            </summary>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.SimpleMemberMap.Parameter">
+            <summary>
+            Target constructor parameter
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.DefaultTypeMap">
+            <summary>
+            Represents default type mapping strategy used by Dapper
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DefaultTypeMap.#ctor(System.Type)">
+            <summary>
+            Creates default type map
+            </summary>
+            <param name="type">Entity type</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DefaultTypeMap.FindConstructor(System.String[],System.Type[])">
+            <summary>
+            Finds best constructor
+            </summary>
+            <param name="names">DataReader column names</param>
+            <param name="types">DataReader column types</param>
+            <returns>Matching constructor or default one</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DefaultTypeMap.GetConstructorParameter(System.Reflection.ConstructorInfo,System.String)">
+            <summary>
+            Gets mapping for constructor parameter
+            </summary>
+            <param name="constructor">Constructor to resolve</param>
+            <param name="columnName">DataReader column name</param>
+            <returns>Mapping implementation</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.DefaultTypeMap.GetMember(System.String)">
+            <summary>
+            Gets member mapping for column
+            </summary>
+            <param name="columnName">DataReader column name</param>
+            <returns>Mapping implementation</returns>
+        </member>
+        <member name="P:DFrame.DAL.Dapper.DefaultTypeMap.MatchNamesWithUnderscores">
+            <summary>
+            Should column names like User_Id be allowed to match properties/fields like UserId ?
+            </summary>
+        </member>
+        <member name="T:DFrame.DAL.Dapper.CustomPropertyTypeMap">
+            <summary>
+            Implements custom property mapping by user provided criteria (usually presence of some custom attribute with column to member mapping)
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.CustomPropertyTypeMap.#ctor(System.Type,System.Func{System.Type,System.String,System.Reflection.PropertyInfo})">
+            <summary>
+            Creates custom property mapping
+            </summary>
+            <param name="type">Target entity type</param>
+            <param name="propertySelector">Property selector based on target type and DataReader column name</param>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.CustomPropertyTypeMap.FindConstructor(System.String[],System.Type[])">
+            <summary>
+            Always returns default constructor
+            </summary>
+            <param name="names">DataReader column names</param>
+            <param name="types">DataReader column types</param>
+            <returns>Default constructor</returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.CustomPropertyTypeMap.GetConstructorParameter(System.Reflection.ConstructorInfo,System.String)">
+            <summary>
+            Not impelmeneted as far as default constructor used for all cases
+            </summary>
+            <param name="constructor"></param>
+            <param name="columnName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.Dapper.CustomPropertyTypeMap.GetMember(System.String)">
+            <summary>
+            Returns property based on selector strategy
+            </summary>
+            <param name="columnName">DataReader column name</param>
+            <returns>Poperty member map</returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLServerFactory">
+            <summary>
+            sqlserver脚本语法库+加工厂
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServerFactory.CreateFactory(System.String,System.String)">
+            <summary>
+            创建Factory实体类
+            </summary>
+            <param name="connStr">链接字符串</param>
+            <param name="databaseName">数据库名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServerFactory.TestConnection">
+            <summary>
+            测试链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServerFactory.TestTableExistence(System.String)">
+            <summary>
+            判断数据表是否存在
+            </summary>
+            <param name="tableName">数据库链接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServerFactory.CreateDBTable(System.Collections.Generic.Dictionary{System.Type,System.Reflection.PropertyInfo[]})">
+            <summary>
+            创建表 只包含int主键
+            </summary>
+            <param name="dic">所有应有表</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServerFactory.TestTableFieldExistence(System.Collections.Generic.KeyValuePair{System.Type,System.Reflection.PropertyInfo[]},System.Collections.Generic.List{DFrame.DAL.ChangeField}@)">
+            <summary>
+            获取将添加SQL脚本
+            </summary>
+            <param name="tab">表-表字段</param>
+            <param name="list">添加脚本</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServerFactory.AddSubColumn(System.Collections.Generic.List{DFrame.DAL.ChangeField})">
+            <summary>
+            添加、删除table列
+            </summary>
+            <param name="list">操作列表</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServerFactory.CreateForeignKeys(System.Collections.Generic.List{DFrame.DAL.ChangeField})">
+            <summary>
+            生成外键关系
+            </summary>
+            <param name="list">将生成外键关系</param>
+        </member>
+        <member name="T:DFrame.DAL.SQLServer.Base">
+            <summary>
+            Dapper基类
+            </summary>
+        </member>
+        <member name="F:DFrame.DAL.SQLServer.Base.connstr">
+            <summary>
+            数据库链接
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Base.#ctor">
+            <summary>
+            链接字符串从config中获取 name=SQLServerConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Base.#ctor(System.String)">
+            <summary>
+            初始化连接字符串
+            </summary>
+            <param name="conn">链接字符串</param>
+        </member>
+        <member name="F:DFrame.DAL.SQLServer.Base.LockUp">
+            <summary>
+            数据库操作加锁用 static修饰会在整个程序池里共享，所以对所有iis请求起作用。
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Base.OpenConnection">
+            <summary>
+            数据库建立链接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:DFrame.DAL.SQLServer.Base.DataBaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Extend.GetWhereSql(System.Object)">
+            <summary>
+            获取（带值）and查询条件
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="model">实体类条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Extend.GetWhereSql(System.Collections.Generic.List{System.Object})">
+            <summary>
+            获取（带值）and查询条件 多个实体间or查询
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="list">实体类条件集合</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Extend.GetWhereStr(System.Object[])">
+            <summary>
+            获取（不带值）and查询条件
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="obj">条件集合用户模糊查询</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Extend.GetWhereStr(System.Object)">
+            <summary>
+            获取（不带值）and查询条件
+            如果实体变量内部值全null是全部查询
+            </summary>
+            <param name="obj">条件查询实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Extend.GetValuesStr(System.Object,System.String)">
+            <summary>
+            获取（不带值）新增实体字段名称，带@
+            </summary>
+            <param name="obj">新增实体</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Extend.GetKeysStr(System.Object,System.String)">
+            <summary>
+            获取 新增实体字段名称
+            </summary>
+            <param name="obj">新增实体</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Extend.GetSetStr(System.Object,System.String)">
+            <summary>
+            获取（不带值）更新实体字段
+            </summary>
+            <param name="obj">条件</param>
+            <param name="tableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute">
+            <summary>
+            dapper执行接口
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Insert``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增单条记录
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Insert``1(``0[],System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增多条记录
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段集合</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Delete``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Delete``1(System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Update``1(``0,System.Collections.Generic.List{System.Object},System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件集合（非class）</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Update``1(``0,System.Object,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Update``1(``0,System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperExecute.Execute(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery">
+            <summary>
+            dapper查询接口
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModelList``1(``0[],System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件,数组 一般用户模糊查询</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModelList``1(``0,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModelList``1(System.String,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql条件</param>
+            <param name="sort">排序字段</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModelList``1(System.Int64@,``0[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>条件
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件（数组有效长度2）一般用户模糊查询</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModelList``1(System.Int64@,``0,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>条件（数组有效长度2）一般用户模糊查询
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModelList``1(System.Int64@,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">sql条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModel``1(``0)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.GetModel``1(System.String)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.ExecuteScalar``1(System.String,System.String)">
+            <summary>
+            获取值（单）
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段</param>
+            <param name="where">sql查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.ExecuteScalar``1(System.String,``0)">
+            <summary>
+            获取值（单）
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段</param>
+            <param name="where">查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.ExecuteScalar(System.String)">
+            <summary>
+            获取值（单）
+            </summary>
+            <param name="commandText">SQL语句</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISqlDapperQuery.Query(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLServer.Interface.ISQLServerHelper">
+            <summary>
+            SQLServer Helper接口
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.CacheParameters(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            隐藏SqlParameter,键为key
+            </summary>
+            <param name="cacheKey">取键key</param>
+            <param name="commandParameters">将要隐藏SqlParameter[]</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.GetCachedParameters(System.String)">
+            <summary>
+            输入key提取隐藏SqlParameter[]
+            </summary>
+            <param name = "cacheKey" > SqlParameter[]的key</param>
+            <returns>返回key的SQLParameter</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteNonQuery(System.String,System.Boolean,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行自定义连接的ExecuteNonQuery方法
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句或存储过程名称</param>
+            <param name="comType">Sql语句类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteNonQueryText(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteNonQueryText(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteNonQueryStoredProcedure(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteNonQueryStoredProcedure(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteNonQuery(System.String)">
+            <summary>
+            执行指定连接ExecuteNonQuery方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteReader(System.String,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteReader方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteReaderText(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderText方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteReaderStoredProcedure(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderStoredProcedure方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteReader(System.String)">
+            <summary>
+            执行指定连接ExecuteReader方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteScalar(System.String,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteScalar方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteScalarText(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarText方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteScalarStoredProcedure(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarStoredProcedure方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ExecuteScalar(System.String)">
+            <summary>
+            执行指定连接ExecuteScalar方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.DataAdapterRead(System.String,System.String,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+             <summary>
+            查询自定义连接的ExecuteDataTable方法，返回查询数据表
+            参数数组形式赋值
+             </summary>
+             <param name="connectionString">自定义连接字符串</param>
+             <param name="tableName">自定义表格名称</param>
+             <param name="commandText">Sql语句或存储过程名称</param>
+             <param name="comType">类型</param>
+             <param name="commandParameters">参数数组</param>
+             <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.DataAdapterReadText(System.String,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTable方法
+            参数数组形式赋值
+            </summary>
+            <param name="tableName">自定义表格名称</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.DataAdapterReadStoredProcedure(System.String,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTableStoredProcedure方法
+            参数数组形式赋值
+            </summary>
+            <param name="tableName">自定义表格名称</param>
+            <param name="commandText">存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回表集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.DataAdapterRead(System.String)">
+            <summary>
+            执行指定连接ExecuteDataTable方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.Interface.ISQLServerHelper.ProcessNull(System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            参数控制，判断parameter是否存在null，如果有改为DBNull
+            </summary>
+            <param name="dataParameter">参数</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLServer.SqlDapperExecute">
+            <summary>
+            SQLServer Dapper
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.#ctor">
+            <summary>
+            初始化DapperExecute,连接字符串访问webconfig的SQLServerConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.#ctor(System.String)">
+            <summary>
+            初始化DapperExecute数据库链接字符串
+            </summary>
+            <param name="conn">SQLServer连接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Insert``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增单条记录
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Insert``1(``0[],System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            新增多条记录(注意！新增数据依据第一条记录的有效数据字段）
+            </summary>
+            <typeparam name="T">表名 表名和实体名相同</typeparam>
+            <param name="obj">插入字段集合</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Delete``1(``0,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Delete``1(System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            删除记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数，-1出错</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Update``1(``0,System.Collections.Generic.List{System.Object},System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件集合（非class集合）</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Update``1(``0,System.Object,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Update``1(``0,System.String,System.Boolean,System.Nullable{System.Int32},System.Nullable{System.Data.CommandType})">
+            <summary>
+            更新记录
+            </summary>
+            <typeparam name="T">实体类/表名</typeparam>
+            <param name="obj">更新字段</param>
+            <param name="where">sql条件</param>
+            <param name="transaction">是否启用事务</param>
+            <param name="timeOut">响应时间</param>
+            <param name="commandType">类型</param>
+            <returns>受影响行数    -1执行错误</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperExecute.Execute(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLServer.SqlDapperQuery">
+            <summary>
+            SQLServer Dapper
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.#ctor">
+            <summary>
+            初始化DapperExecute,连接字符串访问webconfig的SQLServerConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.#ctor(System.String)">
+            <summary>
+            初始化DapperExecute数据库链接字符串
+            </summary>
+            <param name="conn">SQLServer连接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModelList``1(System.Int64@,``0[],System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件（数组有效长度2）一般用户模糊查询</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModelList``1(System.Int64@,``0,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModelList``1(System.Int64@,System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String)">
+            <summary>
+            分页查询Model表
+            </summary>
+            <param name="count">总行数</param>
+            <param name="where">sql条件</param>
+            <param name="rows">每页显示个数</param>
+            <param name="page">页码</param>
+            <param name="sort">排序字段 默认：表名ID</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModel``1(``0)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModel``1(System.String)">
+            <summary>
+            获取实体
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql查询条件</param>
+            <returns>获取实体</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.ExecuteScalar``1(System.String,System.String)">
+            <summary>
+            获取值
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段(单个字段)</param>
+            <param name="where">sql查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.ExecuteScalar``1(System.String,``0)">
+            <summary>
+            获取值（单）
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="select">查询字段</param>
+            <param name="where">查询条件</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.ExecuteScalar(System.String)">
+            <summary>
+            获取值（单）
+            </summary>
+            <param name="commandText">SQL语句</param>
+            <returns>查询值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.Query(System.String)">
+            <summary>
+            执行sql语句
+            </summary>
+            <param name="commandText">sql语句</param>
+            <returns>查询结果</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModelList``1(``0[],System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件,数组 一般用户模糊查询</param>
+            <param name="sort">排序字段 null不排序</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModelList``1(``0,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">条件</param>
+            <param name="sort">排序字段 null不排序</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SqlDapperQuery.GetModelList``1(System.String,System.String,System.String)">
+            <summary>
+            查询Model集合
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+            <param name="where">sql条件</param>
+            <param name="sort">排序字段 null不排序</param>
+            <param name="order">排序方式</param>
+            <returns>实体集合</returns>
+        </member>
+        <member name="T:DFrame.DAL.SQLServer.SQLServerHelper">
+            <summary>
+            SQLServer帮助类
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.#ctor">
+            <summary>
+            初始化DapperExecute,连接字符串访问webconfig的SQLServerConnString
+            </summary>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.#ctor(System.String)">
+            <summary>
+            初始化DapperExecute数据库链接字符串
+            </summary>
+            <param name="conn">SQLServer连接字符串</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.CacheParameters(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            隐藏SqlParameter,键为key
+            </summary>
+            <param name="cacheKey">取键key</param>
+            <param name="commandParameters">将要隐藏SqlParameter[]</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.GetCachedParameters(System.String)">
+            <summary>
+            输入key提取隐藏SqlParameter[]
+            </summary>
+            <param name = "cacheKey" > SqlParameter[]的key</param>
+            <returns>返回key的SQLParameter</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteNonQuery(System.String,System.Boolean,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行自定义连接的ExecuteNonQuery方法
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句或存储过程名称</param>
+            <param name="comType">Sql语句类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteNonQueryText(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteNonQueryText(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryText方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteNonQueryStoredProcedure(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，判断是否需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="transaction">判断是否需要事物处理</param>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteNonQueryStoredProcedure(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行指定连接的带参数ExecuteNonQueryStoredProcedure方法，不需要事物处理
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteNonQuery(System.String)">
+            <summary>
+            执行指定连接ExecuteNonQuery方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回受影响行数</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteReader(System.String,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteReader方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteReaderText(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderText方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteReaderStoredProcedure(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteReaderStoredProcedure方法，返回查询结果集或表格
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteReader(System.String)">
+            <summary>
+            执行指定连接ExecuteReader方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果集</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteScalar(System.String,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询自定义连接的ExecuteScalar方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="connectionString">连接字符串</param>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="comType">类型</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteScalarText(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarText方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteScalarStoredProcedure(System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteScalarStoredProcedure方法，返回查询集结果中的第一行第一列的值
+            参数数组形式赋值
+            </summary>
+            <param name="commandText">Sql语句或者存储过程名</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ExecuteScalar(System.String)">
+            <summary>
+            执行指定连接ExecuteScalar方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回结果值</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.DataAdapterRead(System.String,System.String,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+             <summary>
+            查询自定义连接的ExecuteDataTable方法，返回查询数据表
+            参数数组形式赋值
+             </summary>
+             <param name="connectionString">自定义连接字符串</param>
+             <param name="tableName">自定义表格名称</param>
+             <param name="commandText">Sql语句或存储过程名称</param>
+             <param name="comType">类型</param>
+             <param name="commandParameters">参数数组</param>
+             <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.DataAdapterReadText(System.String,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTable方法
+            参数数组形式赋值
+            </summary>
+            <param name="tableName">自定义表格名称</param>
+            <param name="commandText">Sql语句</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.DataAdapterReadStoredProcedure(System.String,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            查询指定连接ExecuteDataTableStoredProcedure方法
+            参数数组形式赋值
+            </summary>
+            <param name="tableName">自定义表格名称</param>
+            <param name="commandText">存储过程名称</param>
+            <param name="commandParameters">参数数组</param>
+            <returns>返回表集合</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.DataAdapterRead(System.String)">
+            <summary>
+            执行指定连接ExecuteDataTable方法
+            </summary>
+            <param name="commandText">Sql语句</param>
+            <returns>返回数据表</returns>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.SetVariable(System.Data.SqlClient.SqlCommand,System.Data.SqlClient.SqlConnection,System.String,System.Data.CommandType,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            赋值参数
+            </summary>
+            <param name="com">command对象</param>
+            <param name="conn">connection对象</param>
+            <param name="commandtext">Sql语句或者存储过程</param>
+            <param name="comtype">类型</param>
+            <param name="commandparameters">参数数组</param>
+        </member>
+        <member name="M:DFrame.DAL.SQLServer.SQLServerHelper.ProcessNull(System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            参数控制，判断parameter是否存在null，如果有改为DBNull
+            </summary>
+            <param name="dataParameter">参数</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

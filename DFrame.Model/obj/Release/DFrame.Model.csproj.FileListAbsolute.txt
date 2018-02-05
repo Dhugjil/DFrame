@@ -1,0 +1,6 @@
+J:\DFrame\DFrame.Model\bin\Release\DFrame.Model.XML
+J:\DFrame\DFrame.Model\bin\Release\DFrame.Model.dll
+J:\DFrame\DFrame.Model\bin\Release\DFrame.Model.pdb
+J:\DFrame\DFrame.Model\obj\Release\DFrame.Model.dll
+J:\DFrame\DFrame.Model\obj\Release\DFrame.Model.pdb
+J:\DFrame\DFrame.Model\obj\Release\DFrame.Model.csprojResolveAssemblyReference.cache

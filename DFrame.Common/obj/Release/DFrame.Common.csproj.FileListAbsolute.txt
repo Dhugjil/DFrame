@@ -1,0 +1,11 @@
+J:\DFrame\DFrame.Common\bin\Release\DFrame.Common.dll
+J:\DFrame\DFrame.Common\bin\Release\DFrame.Common.pdb
+J:\DFrame\DFrame.Common\bin\Release\System.Data.dll
+J:\DFrame\DFrame.Common\bin\Release\System.dll
+J:\DFrame\DFrame.Common\bin\Release\System.Drawing.dll
+J:\DFrame\DFrame.Common\bin\Release\System.Web.dll
+J:\DFrame\DFrame.Common\bin\Release\System.Web.Extensions.dll
+J:\DFrame\DFrame.Common\obj\Release\DFrame.Common.dll
+J:\DFrame\DFrame.Common\obj\Release\DFrame.Common.pdb
+J:\DFrame\DFrame.Common\bin\Release\DFrame.Common.XML
+J:\DFrame\DFrame.Common\bin\Release\ThoughtWorks.QRCode.dll

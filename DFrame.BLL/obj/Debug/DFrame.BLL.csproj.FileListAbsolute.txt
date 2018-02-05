@@ -1,0 +1,10 @@
+J:\DFrame\DFrame.BLL\obj\Debug\DFrame.BLL.csprojResolveAssemblyReference.cache
+J:\DFrame\DFrame.BLL\bin\Debug\DFrame.BLL.dll
+J:\DFrame\DFrame.BLL\bin\Debug\DFrame.BLL.pdb
+J:\DFrame\DFrame.BLL\bin\Debug\DFrame.Common.dll
+J:\DFrame\DFrame.BLL\bin\Debug\DFrame.DAL.dll
+J:\DFrame\DFrame.BLL\bin\Debug\MySql.Data.dll
+J:\DFrame\DFrame.BLL\bin\Debug\DFrame.Common.pdb
+J:\DFrame\DFrame.BLL\bin\Debug\DFrame.DAL.pdb
+J:\DFrame\DFrame.BLL\obj\Debug\DFrame.BLL.dll
+J:\DFrame\DFrame.BLL\obj\Debug\DFrame.BLL.pdb

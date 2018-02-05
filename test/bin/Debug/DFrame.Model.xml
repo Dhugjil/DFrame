@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DFrame.Model</name>
+    </assembly>
+    <members>
+        <member name="T:DFrame.Model.DBFieldAttribute">
+            <summary>
+            数据库生成用属性
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.DBFieldAttribute.ForeignKey">
+            <summary>
+            外键
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.DBFieldAttribute.DBFieldType">
+            <summary>
+            数据库字段类型 null时系统根据属性类型设置
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.DBFieldAttribute.Lenght">
+            <summary>
+            长度 4001最长 默认4001
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.DBFieldAttribute.DBFieldKey">
+            <summary>
+            键类型
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.DBFieldAttribute.DefaultValue">
+            <summary>
+            默认值
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.DBFieldAttribute.NotNull">
+            <summary>
+            是否可空 默认false
+            </summary>
+        </member>
+        <member name="T:DFrame.Model.DBModel">
+            <summary>
+            生成数据表必须继承这个
+            </summary>
+        </member>
+        <member name="M:DFrame.Model.DBModel.ToObject">
+            <summary>
+            获取指定类型实体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Model.Enums">
+            <summary>
+            DFrame.Model所用的所有枚举
+            </summary>
+        </member>
+        <member name="T:DFrame.Model.Enums.DBFieldKey">
+            <summary>
+            数据库字段的用途。
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.Enums.DBFieldKey.None">
+            <summary>
+            未定义。
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.Enums.DBFieldKey.Unique">
+            <summary>
+            用于唯一键。
+            </summary>
+        </member>
+    </members>
+</doc>

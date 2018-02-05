@@ -1,0 +1,998 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DFrame.Common</name>
+    </assembly>
+    <members>
+        <member name="T:DFrame.Common.EncryptDecrypt.AES">
+            <summary>
+            AES加密解密
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.AES.AesStr(System.String,System.String,System.String)">
+            <summary>
+            AES加密
+            </summary>
+            <param name="value">待加密字段</param>
+            <param name="keyVal">密钥值</param>
+            <param name="ivVal">加密辅助向量</param>
+            <returns></returns>  
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.AES.UnAesStr(System.String,System.String,System.String)">
+            <summary>  
+            AES解密  
+            </summary>  
+            <param name="value">待加密字段</param>  
+            <param name="keyVal">密钥值</param>  
+            <param name="ivVal">加密辅助向量</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.AES.AesByte(System.Byte[],System.String,System.String)">
+            <summary>  
+            AES Byte类型 加密  
+            </summary>  
+            <param name="data">待加密明文</param>  
+            <param name="keyVal">密钥值</param>  
+            <param name="ivVal">加密辅助向量</param>  
+            <returns></returns>  
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.AES.UnAesByte(System.Byte[],System.String,System.String)">
+            <summary>  
+            AES Byte类型 解密  
+            </summary>  
+            <param name="data">待解密明文</param>  
+            <param name="keyVal">密钥值</param>  
+            <param name="ivVal">加密辅助向量</param> 
+            <returns></returns>  
+        </member>
+        <member name="T:DFrame.Common.EncryptDecrypt.Base64">
+            <summary>
+            Base64加密解密
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.Base64.Base64Encrypt(System.String)">
+            <summary>
+            Base64加密 可逆
+            </summary>
+            <param name="value">待加密文本</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.Base64.Base64Decrypt(System.String)">
+            <summary>
+            Base64解密
+            </summary>
+            <param name="ciphervalue">密文</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Common.EncryptDecrypt.DES">
+            <summary>
+            DES加密解密
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.DES.EncryptDES(System.String,System.String,System.String)">
+            <summary>
+            DES加密字符串
+            </summary>
+            <param name="encryptString">待加密的字符串</param>
+            <param name="encryptKey">加密密钥,要求为8位</param>
+            <param name="vectorKey">秘钥向量</param>
+            <returns>加密成功返回加密后的字符串，失败返回源串</returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.DES.DecryptDES(System.String,System.String,System.String)">
+            <summary>
+            DES解密字符串
+            </summary>
+            <param name="decryptString">待解密的字符串</param>
+            <param name="decryptKey">解密密钥,要求为8位,和加密密钥相同</param>
+            <param name="vectorKey">秘钥向量</param>
+            <returns>解密成功返回解密后的字符串，失败返源串</returns>
+        </member>
+        <member name="T:DFrame.Common.EncryptDecrypt.HmacSha">
+            <summary>
+            Hmac 加密
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.HmacSha1(System.String,System.String)">
+            <summary>
+            HmacSha1 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <param name="keyVal">加密秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.HmacSha256(System.String,System.String)">
+            <summary>
+            HmacSha256 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <param name="keyVal">加密秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.HmacSha384(System.String,System.String)">
+            <summary>
+            HmacSha256 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <param name="keyVal">加密秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.HmacSha512(System.String,System.String)">
+            <summary>
+            HmacSha512 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <param name="keyVal">加密秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.HmacMd5(System.String,System.String)">
+            <summary>
+            HmacMd5 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <param name="keyVal">加密秘钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.HmacRipeMd160(System.String,System.String)">
+            <summary>
+            HmacRipeMd160 加密
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.HashAlgorithmBase(System.Security.Cryptography.HashAlgorithm,System.String,System.Text.Encoding)">
+            <summary>
+            HashAlgorithm 加密统一方法
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.HmacSha.Bytes2Str(System.Collections.Generic.IEnumerable{System.Byte},System.String)">
+            <summary>
+            转换成字符串
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.EncryptDecrypt.MD5">
+            <summary>
+            md5操作
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.MD5.GetAbstractToMD5(System.String)">
+            <summary>
+            获取字符串的md5摘要
+            </summary>
+            <param name="str">字符串</param>
+            <returns>MD5摘要</returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.MD5.GetAbstractToMD5(System.String,System.String)">
+            <summary>
+            获取文件的md5摘要 加盐
+            </summary>
+            <param name="str">字符串</param>
+            <param name="salt">盐</param>
+            <returns>MD5摘要</returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.MD5.GetAbstractToMD5(System.IO.Stream)">
+            <summary>
+            获取文件的md5摘要
+            </summary>
+            <param name="sFile">文件流</param>
+            <returns>MD5摘要结果</returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.MD5.GetAbstractToMD5(System.Byte[])">
+            <summary>
+            获取文件的md5摘要
+            </summary>
+            <param name="dataFile">文件流</param>
+            <returns>MD5摘要结果</returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.MD5.Analysis(System.Byte[])">
+            <summary>
+            加密
+            </summary>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Common.EncryptDecrypt.SHA">
+            <summary>
+            SHA加密
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.SHA.Sha1(System.String)">
+            <summary>
+            SHA1 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.SHA.Sha256(System.String)">
+            <summary>
+            Sha256 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.SHA.Sha512(System.String)">
+            <summary>
+            Sha512 加密
+            </summary>
+            <param name="value">加密字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.SHA.HashAlgorithmBase(System.Security.Cryptography.HashAlgorithm,System.String,System.Text.Encoding)">
+            <summary>
+            HashAlgorithm 加密统一方法
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.EncryptDecrypt.SHA.Bytes2Str(System.Collections.Generic.IEnumerable{System.Byte},System.String)">
+            <summary>
+            转换成字符串
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.Enums">
+            <summary>
+            包含所有枚举
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.Enums.ImageThumbnailMode">
+            <summary>
+            生成缩略图的方式
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageThumbnailMode.HW">
+            <summary>
+            指定高宽缩放（可能变形）
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageThumbnailMode.W">
+            <summary>
+            指定宽，高按比例
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageThumbnailMode.H">
+            <summary>
+            指定高，宽按比例
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageThumbnailMode.Cut">
+            <summary>
+            指定高宽裁减（不变形）
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.Enums.ImageWatermarkLocation">
+            <summary>
+            水印图片位置
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.LT">
+            <summary>
+            左上
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.T">
+            <summary>
+            上
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.RT">
+            <summary>
+            右上
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.LC">
+            <summary>
+            左中
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.C">
+            <summary>
+            中
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.RC">
+            <summary>
+            右中
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.LB">
+            <summary>
+            左下
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.B">
+            <summary>
+            下
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.ImageWatermarkLocation.RB">
+            <summary>
+            左下
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.Enums.HttpMethod">
+            <summary>
+            请求属性类型
+            https://www.cnblogs.com/ID890/p/http.html
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Get">
+            <summary>
+            GET方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Post">
+            <summary>
+            POST方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Head">
+            <summary>
+            HEAD方法 只返回首部。不会反回实体的主体部分
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Trace">
+            <summary>
+            TRACE方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Option">
+            <summary>
+            OPTIONS方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Delete">
+            <summary>
+            DELETE方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Lock">
+            <summary>
+            LOCK方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.MKCOL">
+            <summary>
+            MKCOL方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Move">
+            <summary>
+            MOVE方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.HttpMethod.Put">
+            <summary>
+            PUT方法
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.Enums.PostContentType">
+            <summary>
+            POST HttpRequest请求类型
+            https://www.cnblogs.com/xiaozong/p/5732332.html
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.PostContentType.Application">
+            <summary>
+            application/x-www-form-urlencoded
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.PostContentType.multipart">
+            <summary>
+            multipart/form-data
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.PostContentType.ApplicationJson">
+            <summary>
+            application/json
+            </summary>
+        </member>
+        <member name="F:DFrame.Common.Enums.PostContentType.TextXml">
+            <summary>
+            text/xml
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.HttpService">
+            <summary>
+            http服务类
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.HttpService.Post(System.String,System.String,DFrame.Common.Enums.PostContentType,System.Int32)">
+            <summary>
+            Post访问
+            </summary>
+            <param name="url">请求路径</param>
+            <param name="content">请求内容</param>
+            <param name="contentType">请求格式</param>
+            <param name="timeout">超时值（秒）</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.HttpService.PostCookie(System.String,System.Collections.Generic.List{System.Net.Cookie},System.String,DFrame.Common.Enums.PostContentType,System.Int32)">
+            <summary>
+            Post访问
+            </summary>
+            <param name="url">请求路径</param>
+            <param name="cookies">模拟cookies</param>
+            <param name="content">请求内容</param>
+            <param name="contentType">请求格式</param>
+            <param name="timeout">超时值（秒）</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.HttpService.Get(System.String,System.Int32)">
+            <summary>
+            Get访问
+            </summary>
+            <param name="url">请求路径</param>
+            <param name="timeout">超时值（秒）</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.HttpService.GetCookie(System.String,System.Collections.Generic.List{System.Net.Cookie},System.Int32)">
+            <summary>
+            Get访问
+            </summary>
+            <param name="url">请求路径</param>
+            <param name="cookies">模拟cookie集合</param>
+            <param name="timeout">超时值（秒）</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Common.ImageClass">
+            <summary>
+            图片操作类
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.#ctor">
+            <summary>
+            图片操作构造函数
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.CatMakeThumbnail(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            中部剪取生成缩略图
+            </summary>
+            <param name="originalImagePath">源图路径（物理路径）</param>
+            <param name="thumbnailPath">缩略图路径（物理路径）</param>
+            <param name="width">缩略图宽度</param>
+            <param name="height">缩略图高度</param> 
+        </member>
+        <member name="M:DFrame.Common.ImageClass.MakeThumbnail(System.String,System.String,System.Int32,System.Int32,DFrame.Common.Enums.ImageThumbnailMode)">
+            <summary>
+            生成缩略图
+            </summary>
+            <param name="originalImagePath">源图路径（物理路径）</param>
+            <param name="thumbnailPath">缩略图路径（物理路径）</param>
+            <param name="width">缩略图宽度</param>
+            <param name="height">缩略图高度</param>
+            <param name="mode">生成缩略图的方式</param> 
+        </member>
+        <member name="M:DFrame.Common.ImageClass.ImageWatermark(System.String,System.String,DFrame.Common.Enums.ImageWatermarkLocation)">
+            <summary>
+            图片水印处理方法
+            </summary>
+            <param name="path">需要加载水印的图片路径（绝对路径）</param>
+            <param name="waterpath">水印图片（绝对路径）</param>
+            <param name="location">水印位置（传送正确的代码）</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.GetLocation(DFrame.Common.Enums.ImageWatermarkLocation,System.Drawing.Image,System.Drawing.Image)">
+            <summary>
+            图片水印位置处理方法
+            </summary>
+            <param name="location">水印位置</param>
+            <param name="img">需要添加水印的图片</param>
+            <param name="waterimg">水印图片</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.LetterWatermark(System.String,System.Int32,System.String,System.String,System.Drawing.Color,DFrame.Common.Enums.ImageWatermarkLocation)">
+            <summary>
+            文字水印处理方法
+            </summary>
+            <param name="path">图片路径（绝对路径）</param>
+            <param name="size">字体大小</param>
+            <param name="letter">水印文字</param>
+            <param name="fontFamily">字体</param>
+            <param name="color">颜色</param>
+            <param name="location">水印位置</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.GetLocation(DFrame.Common.Enums.ImageWatermarkLocation,System.Drawing.Image,System.Int32,System.Int32)">
+            <summary>
+            文字水印位置的方法
+            </summary>
+            <param name="location">位置代码</param>
+            <param name="img">图片对象</param>
+            <param name="width">宽(当水印类型为文字时,传过来的就是字体的大小)</param>
+            <param name="height">高(当水印类型为文字时,传过来的就是字符的长度)</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.LDPic(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            调整光暗
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+            <param name="val">增加或减少的光暗值</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.RePic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            反色处理
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.FD(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            浮雕处理
+            </summary>
+            <param name="oldBitmap">原始图片</param>
+            <param name="Width">原始图片的长度</param>
+            <param name="Height">原始图片的高度</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.ResizeImage(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            拉伸图片
+            </summary>
+            <param name="bmp">原始图片</param>
+            <param name="newW">新的宽度</param>
+            <param name="newH">新的高度</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.FilPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            滤色处理
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.RevPicLR(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            左右翻转
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.RevPicUD(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            上下翻转
+            </summary>
+            <param name="mybm">原始图片</param>
+            <param name="width">原始图片的长度</param>
+            <param name="height">原始图片的高度</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.Compress(System.String,System.String)">
+            <summary>
+            压缩到指定尺寸
+            </summary>
+            <param name="oldfile">原文件</param>
+            <param name="newfile">新文件</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.Gray(System.Drawing.Color)">
+            <summary>
+            图片灰度化
+            </summary>
+            <param name="c"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.BWPic(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            转换为黑白图片
+            </summary>
+            <param name="mybm">要进行处理的图片</param>
+            <param name="width">图片的长度</param>
+            <param name="height">图片的高度</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.GetFrames(System.String,System.String)">
+            <summary>
+            获取图片中的各帧
+            </summary>
+            <param name="pPath">图片路径</param>
+            <param name="pSavedPath">保存路径</param>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.CreateVerifyCodeBmp(System.String@)">
+            <summary>
+            生成图片
+            </summary>
+            <param name="codeStr">验证字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.ImageClass.CreateRandomCode(System.Int32)">
+            <summary>
+            生成随机字符
+            </summary>
+            <param name="codeCount">字符长度</param>
+            <returns></returns>
+        </member>
+        <member name="F:DFrame.Common.ImageClass.allChar">
+            <summary>
+            随机字符集合
+            </summary>
+        </member>
+        <member name="T:DFrame.Common.Json">
+            <summary>
+            json操作
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.Json.JsonToObject``1(System.String)">
+            <summary>
+            从一个Json串生成对象信息
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="jsonString">json字符串</param>
+            <returns>对象</returns>
+        </member>
+        <member name="M:DFrame.Common.Json.ObjectToJson(System.Object)">
+            <summary>
+            从一个对象信息生成Json串
+            </summary>
+            <param name="obj">对象</param>
+            <returns>json字符串</returns>
+        </member>
+        <member name="T:DFrame.Common.ListComparer`1">
+            <summary>
+            按实体字段去重
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+        </member>
+        <member name="T:DFrame.Common.ListComparer`1.EqualsConparer`1">
+            <summary>
+            定义代理
+            </summary>
+            <typeparam name="F">实体类型</typeparam>
+            <param name="x">实体</param>
+            <param name="y">实体</param>
+            <returns></returns>
+        </member>
+        <member name="F:DFrame.Common.ListComparer`1._equalsConparer">
+            <summary>
+            存储代理
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.ListComparer`1.#ctor(DFrame.Common.ListComparer{`0}.EqualsConparer{`0})">
+            <summary>
+            去重字段 (p1,p2)=>(p1.Feild == p2.Feild)
+            </summary>
+            <param name="equalsConparer"></param>
+        </member>
+        <member name="M:DFrame.Common.ListComparer`1.Equals(`0,`0)">
+            <summary>
+            比较
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.ListComparer`1.GetHashCode(`0)">
+            <summary>
+            获取哈希值
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Common.Mail">
+            <summary>  
+            电子邮件操作类。  
+            </summary>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor">
+            <summary>  
+            初始化一个电子邮件操作类的空实例。  
+            </summary>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.Int32,System.String,System.String,System.Boolean,System.String)">
+            <summary>  
+            初始化一个电子邮件操作类的实例。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="fromName">发件人的姓名。</param>  
+            <param name="recipient">{"Name","Email"}。</param>
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="port">电子邮件的主机端口号。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+            <param name="isBodyHtml">邮件的正文是否是HTML格式。</param>  
+            <param name="filepath">邮件附件的文件路径。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String,System.Boolean,System.String)">
+            <summary>  
+            初始化一个电子邮件操作类的实例。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="fromName">发件人的姓名。</param>  
+            <param name="recipient">收件人的电子邮件地址。</param>  
+            <param name="recipientName">收件人的姓名。</param>  
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="port">电子邮件的主机端口号。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+            <param name="isBodyHtml">邮件的正文是否是HTML格式。</param>  
+            <param name="filepath">邮件附件的文件路径。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.Int32,System.String,System.String,System.Boolean)">
+            <summary>  
+            初始化一个电子邮件操作类的实例。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="fromName">{"Name","Email"}。</param>  
+            <param name="recipient">收件人的电子邮件地址。</param>  
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="port">电子邮件的主机端口号。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+            <param name="isBodyHtml">邮件的正文是否是HTML格式。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32,System.String,System.String,System.Boolean)">
+            <summary>  
+            初始化一个电子邮件操作类的实例。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="fromName">发件人的姓名。</param>  
+            <param name="recipient">收件人的电子邮件地址。</param>  
+            <param name="recipientName">收件人的姓名。</param>  
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="port">电子邮件的主机端口号。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+            <param name="isBodyHtml">邮件的正文是否是HTML格式。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.String,System.String)">
+            <summary>  
+            初始化一个电子邮件操作类的实例。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="fromName">发件人的姓名。</param>  
+            <param name="recipient">{"Name","Email"}。</param>
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>  
+            初始化一个电子邮件操作类的实例。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="fromName">发件人的姓名。</param>  
+            <param name="recipient">收件人的电子邮件地址。</param>  
+            <param name="recipientName">收件人的姓名。</param>  
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.String,System.String)">
+            <summary>  
+            初始化一个电子邮件操作类的实例（邮件的正文非HTML格式，端口默认25）。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="recipient">收件人的电子邮件地址集合。</param>  
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>  
+            初始化一个电子邮件操作类的实例（邮件的正文非HTML格式，端口默认25）。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="recipient">收件人的电子邮件地址。</param>  
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+        </member>
+        <member name="M:DFrame.Common.Mail.#ctor(System.String,System.Collections.Generic.List{System.String},System.String,System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>  
+            初始化一个电子邮件操作类的实例（邮件的正文非HTML格式，端口默认25）。  
+            </summary>  
+            <param name="from">发件人的电子邮件地址。</param>  
+            <param name="recipient">收件人的电子邮件地址集合。</param>  
+            <param name="subject">电子邮件的主题。</param>  
+            <param name="body">电子邮件的内容。</param>  
+            <param name="port">电子邮件的主机端口号。</param>  
+            <param name="host">电子邮件的服务器地址。</param>  
+            <param name="username">登录电子邮件服务器的用户名。</param>  
+            <param name="password">登录电子邮件服务器的用户密码。</param>  
+        </member>
+        <member name="P:DFrame.Common.Mail.RecipientDictionary">
+            <summary>  
+            收件人列表。Name Email
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.Subject">
+            <summary>  
+            获取或设置邮件的主题。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.Body">
+            <summary>  
+            获取或设置邮件的正文内容。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.From">
+            <summary>  
+            获取或设置发件人的邮件地址。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.FromName">
+            <summary>  
+            获取或设置发件人的姓名。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.ServerHost">
+            <summary>  
+            获取或设置邮件服务器主机地址。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.ServerPort">
+            <summary>  
+            获取或设置邮件服务器的端口号。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.Username">
+            <summary>  
+            获取或设置SMTP认证时使用的用户名。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.Password">
+            <summary>  
+            获取或设置SMTP认证时使用的密码。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.IsBodyHtml">
+            <summary>  
+            获取或设置指示邮件正文是否为 Html 格式的值。  
+            </summary>  
+        </member>
+        <member name="P:DFrame.Common.Mail.Attachment">
+            <summary>  
+            获取电子邮件附件。  
+            </summary>  
+        </member>
+        <member name="M:DFrame.Common.Mail.AddAttachment(System.String[])">
+            <summary>  
+            添加电子邮件附件。  
+            </summary>  
+            <param name="fileList">文件列表。</param>  
+            <returns>是否添加成功。</returns>  
+        </member>
+        <member name="M:DFrame.Common.Mail.Send">
+            <summary>  
+            发送电子邮件。  
+            </summary>  
+            <returns>是否发送成功。</returns>  
+        </member>
+        <member name="T:DFrame.Common.CreateKey">
+            <summary>
+            生成公钥类
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.CreateKey.PublicKey">
+            <summary>
+            创建公钥2分钟有效
+            </summary>
+            <returns>0当前公钥 1前一分钟公钥</returns>
+        </member>
+        <member name="M:DFrame.Common.CreateKey.GuidKey(System.String)">
+            <summary>
+            生成Guid字符串
+            
+            null// 9af7f46a-ea52-4aa3-b8c3-9fd484c2af12
+            N// e0a953c3ee6040eaa9fae2b667060e09
+            D// 9af7f46a-ea52-4aa3-b8c3-9fd484c2af12
+            B// {734fd453-a4f8-4c5d-9c98-3fe2d7079760}
+            P//  (ade24d16-db0f-40af-8794-1e08e2040df3)
+            X// {0x3fa412e3,0x8356,0x428f,{0xaa,0x34,0xb7,0x40,0xda,0xaf,0x45,0x6f}}
+            </summary>
+            <param name="type">字符串格式</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Common.QRCode">
+            <summary>
+            生成二维码和解读二维码
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.QRCode.Encoder(System.String,System.Text.Encoding,ThoughtWorks.QRCode.Codec.QRCodeEncoder.ENCODE_MODE,ThoughtWorks.QRCode.Codec.QRCodeEncoder.ERROR_CORRECTION,System.Int32,System.Int32)">
+            <summary>
+            生成QRCode
+            </summary>
+            <param name="data">生成字符串</param>
+            <param name="data_encoding">字符串编码格式</param>
+            <param name="encode_mode">编码模式</param>
+            <param name="error_correction">容错级别L:7% M:15% Q:25% H:30%（微信短连接建议L）</param>
+            <param name="version">版本1-40（微信短链接建议4）</param>
+            <param name="scale">大小尺寸（微信短链接建议4）</param>
+            <returns>二维码image</returns>
+        </member>
+        <member name="M:DFrame.Common.QRCode.Decoder(System.Drawing.Image)">
+            <summary>
+            QRCode解码
+            </summary>
+            <param name="image">图片信息</param>
+            <returns>解码信息</returns>
+        </member>
+        <member name="T:DFrame.Common.SMS">
+            <summary>
+            短信接口 阿里云
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.SMS.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            实例化阿里云短信接口
+            </summary>
+            <param name="appcode">你自己的AppCode</param>
+            <param name="method">请求方式,默认"GET"</param>
+            <param name="host">接口地址,默认"http://sms.market.alicloudapi.com"</param>
+            <param name="path">接口路径,默认"/singleSendSms"</param>
+        </member>
+        <member name="M:DFrame.Common.SMS.SendSMS(System.String,System.String,System.String,System.String)">
+            <summary>
+            发送短信
+            </summary>
+            <param name="ParamString">模板变量。例如：短信模板为：“短信验证码${no}”则传递 {"no":"123456"}</param>
+            <param name="RecNum">目标手机号,多条记录可以英文逗号分隔</param>
+            <param name="SignName">签名名称</param>
+            <param name="TemplateCode">模板CODE</param>
+            <returns>null:参数错误，{"success": true}:正常，{"message": "The specified templateCode is wrongly formed.","success": false}:错误</returns>
+        </member>
+        <member name="T:DFrame.Common.TextError">
+            <summary>
+            系统错误信息处理
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.TextError.SaveError(System.String)">
+            <summary>
+            记录系统错误/存入根目录下APP_Data/Error文件夹下
+            </summary>
+            <param name="msg">错误信息</param>
+        </member>
+        <member name="T:DFrame.Common.TextLog">
+            <summary>
+            系统日志处理
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.TextLog.SaveLog(System.String)">
+            <summary>
+            记录系统错误/存入根目录下APP_Data/Error文件夹下
+            </summary>
+            <param name="msg">错误信息</param>
+        </member>
+        <member name="T:DFrame.Common.Tools">
+            <summary>
+            其他工具
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.Tools.ConvertToList``1(System.Data.DataTable)">
+            <summary>
+            DataTable To T List
+            </summary>
+            <typeparam name="T">实体类</typeparam>
+            <param name="table">DataTable</param>
+            <returns>T List</returns>
+        </member>
+        <member name="T:DFrame.Common.UserInfo">
+            <summary>
+            当前用户信息
+            </summary>
+        </member>
+        <member name="P:DFrame.Common.UserInfo.UserName">
+            <summary>
+            用户名 HttpContext.Current.User.Identity.Name
+            </summary>
+        </member>
+        <member name="P:DFrame.Common.UserInfo.IP">
+            <summary>
+            用户IP HttpContext.Current.Request.UserHostAddress
+            </summary>
+        </member>
+        <member name="P:DFrame.Common.UserInfo.AbsolutePath">
+            <summary>
+            URI绝对路径 HttpContext.Current.Request.UserHostAddress
+            </summary>
+        </member>
+    </members>
+</doc>

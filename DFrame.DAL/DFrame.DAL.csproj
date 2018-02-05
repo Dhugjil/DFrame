@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF978A8A-A3C0-4444-B931-7C2C84409328}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DFrame.DAL</RootNamespace>
+    <AssemblyName>DFrame.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\DFrame.DAL.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\DFrame.DAL.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DFrame\Lib\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Access\AccessHelper.cs" />
+    <Compile Include="Access\Interface\IAccessHelper.cs" />
+    <Compile Include="Common.cs" />
+    <Compile Include="IFactory.cs" />
+    <Compile Include="MySQLFactory.cs" />
+    <Compile Include="MySQL\Base.cs" />
+    <Compile Include="MySQL\Extend.cs" />
+    <Compile Include="MySQL\Interface\IMySQLHelper.cs" />
+    <Compile Include="MySQL\Interface\ISqlDapperExecute.cs" />
+    <Compile Include="MySQL\Interface\ISqlDapperQuery.cs" />
+    <Compile Include="MySQL\MySQLHelper.cs" />
+    <Compile Include="MySQL\SqlDapperExecute.cs" />
+    <Compile Include="MySQL\SqlDapperQuery.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLFactory.cs" />
+    <Compile Include="SqlMapper.cs" />
+    <Compile Include="SQLServerFactory.cs" />
+    <Compile Include="SQLServer\Base.cs" />
+    <Compile Include="SQLServer\Extend.cs" />
+    <Compile Include="SQLServer\Interface\ISqlDapperExecute.cs" />
+    <Compile Include="SQLServer\Interface\ISqlDapperQuery.cs" />
+    <Compile Include="SQLServer\Interface\ISQLServerHelper.cs" />
+    <Compile Include="SQLServer\SqlDapperExecute.cs" />
+    <Compile Include="SQLServer\SqlDapperQuery.cs" />
+    <Compile Include="SQLServer\SQLServerHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DFrame.Model\DFrame.Model.csproj">
+      <Project>{ed377257-4304-4f0e-bb1e-597aa760e194}</Project>
+      <Name>DFrame.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,316 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+
+namespace DFrame.DAL.MySQL
+{
+    internal static class Extend
+    {
+        /// <summary>
+        /// 获取 查询条件（带值）and查询
+        /// </summary>
+        /// <param name="list">实体类条件</param>
+        /// <returns></returns>
+        public static string GetWhereSql(this object model, string tableName)
+        {
+            if (model == null)
+                return " 1 = 0 ";
+
+            //实体单元查询条件
+            List<string> modelStr = new List<string>();
+            //获取实体类型
+            Type modelType = model.GetType();
+
+            //遍历属性字段
+            PropertyInfo[] prop = modelType.GetProperties();
+            foreach (PropertyInfo propertyInfo in prop)
+            {
+                //字段非空是加入条件
+                if (propertyInfo.GetValue(model) != null)
+                {
+                    //获取字段类型 下面根据字段类型加引号之类sql语句
+                    Type attType = propertyInfo.PropertyType;
+
+                    if (attType == typeof(int) || attType == typeof(int?))
+                    {
+                        modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((int)propertyInfo.GetValue(model)).ToString());
+                    }
+                    else if (attType == typeof(decimal) || attType == typeof(decimal?))
+                    {
+                        modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((decimal)propertyInfo.GetValue(model)).ToString());
+                    }
+                    else if (attType == typeof(float) || attType == typeof(float?))
+                    {
+                        modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((float)propertyInfo.GetValue(model)).ToString());
+                    }
+                    else if (attType == typeof(double) || attType == typeof(double?))
+                    {
+                        modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((double)propertyInfo.GetValue(model)).ToString());
+                    }
+                    else if (attType == typeof(bool) || attType == typeof(bool?))
+                    {
+                        string temp = "";
+                        if ((bool)propertyInfo.GetValue(model))
+                            temp = "1";
+                        else
+                            temp = "0";
+                        modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + temp);
+                    }
+                    else if (attType == typeof(DateTime) || attType == typeof(DateTime?))
+                    {
+                        modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = '" + ((DateTime)propertyInfo.GetValue(model)).ToString("yyyy-MM-dd HH:mm:ss.fff") + "'");
+                    }
+                    else if (attType == typeof(string))
+                    {
+                        modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = '" + (string)propertyInfo.GetValue(model) + "'");
+                    }
+                    else
+                    {
+                        modelStr.Add(" 1 = 0 ");
+                    }
+                }
+            }
+            if (modelStr.Count != 0)
+                return string.Join(" and ", modelStr);
+            else
+                return " 1 = 1 ";
+        }
+        /// <summary>
+        /// 获取 查询条件（带值）or查询
+        /// </summary>
+        /// <param name="list">实体类条件集合</param>
+        /// <returns></returns>
+        public static string GetWhereSql(this List<object> list, string tableName)
+        {
+            if (list == null)
+                return " 1 = 0 ";
+
+            //实体集合查询条件
+            List<string> modelsStr = new List<string>();
+            //遍历实体集合
+            foreach (object model in list)
+            {
+                //实体单元查询条件
+                List<string> modelStr = new List<string>();
+                //获取实体类型
+                Type modelType = model.GetType();
+
+                //遍历属性字段
+                PropertyInfo[] prop = modelType.GetProperties();
+                foreach (PropertyInfo propertyInfo in prop)
+                {
+                    //字段非空是加入条件
+                    if (propertyInfo.GetValue(model) != null)
+                    {
+                        //获取字段类型 下面根据字段类型加引号之类sql语句
+                        Type attType = propertyInfo.PropertyType;
+
+                        if (attType == typeof(int) || attType == typeof(int?))
+                        {
+                            modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((int)propertyInfo.GetValue(model)).ToString());
+                        }
+                        else if (attType == typeof(decimal) || attType == typeof(decimal?))
+                        {
+                            modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((decimal)propertyInfo.GetValue(model)).ToString());
+                        }
+                        else if (attType == typeof(float) || attType == typeof(float?))
+                        {
+                            modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((float)propertyInfo.GetValue(model)).ToString());
+                        }
+                        else if (attType == typeof(double) || attType == typeof(double?))
+                        {
+                            modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((double)propertyInfo.GetValue(model)).ToString());
+                        }
+                        else if (attType == typeof(bool) || attType == typeof(bool?))
+                        {
+                            string temp = "";
+                            if ((bool)propertyInfo.GetValue(model))
+                                temp = "1";
+                            else
+                                temp = "0";
+                            modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + temp);
+                        }
+                        else if (attType == typeof(DateTime) || attType == typeof(DateTime?))
+                        {
+                            modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = '" + ((DateTime)propertyInfo.GetValue(model)).ToString("yyyy-MM-dd HH:mm:ss.fff") + "'");
+                        }
+                        else if (attType == typeof(string))
+                        {
+                            modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = '" + (string)propertyInfo.GetValue(model) + "'");
+                        }
+                        else
+                        {
+                            modelStr.Add(" 1 = 0 ");
+                        }
+                    }
+                }
+                if (modelStr != null)
+                {
+                    modelsStr.Add(" ( " + string.Join(" and ", modelStr) + " ) ");
+                }
+            }
+            if (modelsStr.Count != 0)
+                return string.Join(" or ", modelsStr);
+            else
+                return " 1 = 1 ";
+        }
+        /// <summary>
+        /// 获取 查询实体where条件
+        /// </summary>
+        /// <param name="obj">条件集合用户模糊查询</param>
+        /// <returns></returns>
+        public static string GetWhereStr(this object[] obj)
+        {
+            if (obj == null)
+                return " 1 = 0 ";
+            if (obj.Length == 1)
+            {
+                Type type = obj[0].GetType();
+                PropertyInfo[] prop = type.GetProperties();
+                List<string> list = new List<string>();
+                foreach (PropertyInfo propertyInfo in prop)
+                {
+                    if (propertyInfo.GetValue(obj[0]) != null)
+                    {
+                        list.Add(" " + type.Name + "." + propertyInfo.Name + " = @" + propertyInfo.Name);
+                    }
+                }
+                if (list.Count != 0)
+                    return string.Join(" and ", list);
+                else
+                    return " 1 = 1 ";
+            }
+            else
+            {
+                Type type = obj[0].GetType();
+                PropertyInfo[] prop = type.GetProperties();
+                List<string> list = new List<string>();
+                foreach (PropertyInfo propertyInfo in prop)
+                {
+                    if (propertyInfo.GetValue(obj[0]) != null)
+                    {
+                        if (propertyInfo.GetValue(obj[0]).ToString() == propertyInfo.GetValue(obj[1]).ToString())
+                        {
+                            list.Add(" " + type.Name + "." + propertyInfo.Name + " = @" + propertyInfo.Name);
+                        }
+                        else if (propertyInfo.GetValue(obj[0]) != propertyInfo.GetValue(obj[1]) && propertyInfo.GetValue(obj[1]).ToString().Trim() == "%")
+                        {
+                            //获取字段类型 下面根据字段类型加引号之类sql语句
+                            Type attType = propertyInfo.PropertyType;
+                            if (attType == typeof(string))
+                            {
+                                string likeval = propertyInfo.GetValue(obj[0]).ToString().Trim();
+                                string replaseChars = "',\"%=><";
+                                char[] c = replaseChars.ToCharArray();
+                                foreach (char item in c)
+                                {
+                                    likeval = likeval.Replace(item.ToString(), "");
+                                }
+                                list.Add(" " + type.Name + "." + propertyInfo.Name + " like '%" + likeval + "%'");
+                            }
+                            else
+                            {
+                                list.Add(" " + type.Name + "." + propertyInfo.Name + " = @" + propertyInfo.Name);
+                            }
+                        }
+                    }
+                }
+                if (list.Count != 0)
+                    return string.Join(" and ", list);
+                else
+                    return " 1 = 1 ";
+            }
+        }
+        /// <summary>
+        /// 获取 查询实体where条件
+        /// </summary>
+        /// <param name="obj">条件查询实体</param>
+        /// <returns></returns>
+        public static string GetWhereStr(this object obj)
+        {
+            if (obj == null)
+                return " 1 = 0 ";
+
+            Type type = obj.GetType();
+            PropertyInfo[] prop = type.GetProperties();
+            List<string> list = new List<string>();
+            foreach (PropertyInfo propertyInfo in prop)
+            {
+                if (propertyInfo.GetValue(obj) != null)
+                {
+                    list.Add(" " + type.Name + "." + propertyInfo.Name + " = @" + propertyInfo.Name);
+                }
+            }
+            if (list.Count != 0)
+                return string.Join(" and ", list);
+            else
+                return " 1 = 1 ";
+        }
+        /// <summary>
+        /// 获取 新增实体字段名称，带@
+        /// </summary>
+        /// <param name="obj">新增实体</param>
+        /// <param name="tableName">表名</param>
+        /// <returns></returns>
+        public static string GetValuesStr(this object obj)
+        {
+            if (obj == null)
+                return "";
+
+            Type type = obj.GetType();
+            PropertyInfo[] prop = type.GetProperties();
+            List<string> list = new List<string>();
+            foreach (PropertyInfo propertyInfo in prop)
+            {
+                if (propertyInfo.Name.ToUpper() != type.Name.ToUpper() + "ID" && propertyInfo.GetValue(obj) != null)
+                {
+                    list.Add(" @" + propertyInfo.Name);
+                }
+            }
+            return string.Join(",", list);
+        }
+        /// <summary>
+        /// 获取 新增实体字段名称
+        /// </summary>
+        /// <param name="obj">新增实体</param>
+        /// <param name="tableName">表名</param>
+        /// <returns></returns>
+        public static string GetKeysStr(this object obj)
+        {
+            if (obj == null)
+                return "";
+
+            Type type = obj.GetType();
+            PropertyInfo[] prop = type.GetProperties();
+            List<string> list = new List<string>();
+            foreach (PropertyInfo propertyInfo in prop)
+            {
+                if (propertyInfo.Name.ToUpper() != type.Name.ToUpper() + "ID" && propertyInfo.GetValue(obj) != null)
+                    list.Add(" " + type.Name + "." + propertyInfo.Name);
+            }
+            return string.Join(",", list);
+        }
+        /// <summary>
+        /// 获取 更新实体字段
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string GetSetStr(this object obj)
+        {
+            if (obj == null)
+                return "";
+
+            Type type = obj.GetType();
+            PropertyInfo[] prop = type.GetProperties();
+            List<string> list = new List<string>();
+            foreach (PropertyInfo propertyInfo in prop)
+            {
+                if (propertyInfo.Name.ToUpper() != type.Name.ToUpper() + "ID" && propertyInfo.GetValue(obj) != null)
+                {
+                    list.Add(" " + type.Name + "." + propertyInfo.Name + " = @" + propertyInfo.Name);
+                }
+            }
+            return string.Join(",", list);
+        }
+    }
+}

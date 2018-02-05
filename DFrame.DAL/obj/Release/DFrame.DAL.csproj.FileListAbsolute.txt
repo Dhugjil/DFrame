@@ -1,0 +1,13 @@
+J:\DFrame\DFrame.DAL\bin\Release\DFrame.DAL.XML
+J:\DFrame\DFrame.DAL\bin\Release\DFrame.DAL.dll
+J:\DFrame\DFrame.DAL\bin\Release\DFrame.DAL.pdb
+J:\DFrame\DFrame.DAL\bin\Release\DFrame.Model.dll
+J:\DFrame\DFrame.DAL\bin\Release\MySql.Data.dll
+J:\DFrame\DFrame.DAL\bin\Release\System.Configuration.dll
+J:\DFrame\DFrame.DAL\bin\Release\System.Data.dll
+J:\DFrame\DFrame.DAL\bin\Release\System.dll
+J:\DFrame\DFrame.DAL\bin\Release\DFrame.Model.pdb
+J:\DFrame\DFrame.DAL\bin\Release\DFrame.Model.xml
+J:\DFrame\DFrame.DAL\obj\Release\DFrame.DAL.csprojResolveAssemblyReference.cache
+J:\DFrame\DFrame.DAL\obj\Release\DFrame.DAL.dll
+J:\DFrame\DFrame.DAL\obj\Release\DFrame.DAL.pdb
