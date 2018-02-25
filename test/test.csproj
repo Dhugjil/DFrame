@@ -58,6 +58,10 @@
       <Project>{ef978a8a-a3c0-4444-b931-7c2c84409328}</Project>
       <Name>DFrame.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DFrame.Model\DFrame.Model.csproj">
+      <Project>{ed377257-4304-4f0e-bb1e-597aa760e194}</Project>
+      <Name>DFrame.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{164725c1-c568-44fa-9475-bef695190d5a}</Project>
       <Name>Models</Name>

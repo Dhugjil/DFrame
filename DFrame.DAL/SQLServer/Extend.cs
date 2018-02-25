@@ -203,7 +203,7 @@ namespace DFrame.DAL.SQLServer
                             if (attType == typeof(string))
                             {
                                 string likeval = propertyInfo.GetValue(obj[0]).ToString().Trim();
-                                string replaseChars = "',\"=><";
+                                string replaseChars = "',\"%=><";
                                 char[] c = replaseChars.ToCharArray();
                                 foreach (char item in c)
                                 {

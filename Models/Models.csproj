@@ -40,10 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AligaliWord.cs" />
-    <Compile Include="Aligali_Atom.cs" />
-    <Compile Include="Aligali_AtomFromDocument.cs" />
-    <Compile Include="Aligali_WordFromDocument.cs" />
+    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

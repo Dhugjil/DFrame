@@ -20,3 +20,17 @@ H:\DFrame\Models\bin\Debug\DFrame.Model.xml
 J:\DFrame\Models\bin\Debug\DFrame.Model.dll
 J:\DFrame\Models\bin\Debug\DFrame.Model.pdb
 J:\DFrame\Models\bin\Debug\DFrame.Model.xml
+J:\DFrame\Models\bin\Debug\ThoughtWorks.QRCode.dll
+H:\DFrame\Models\bin\Debug\ThoughtWorks.QRCode.dll
+F:\DFrame\Models\bin\Debug\Models.dll
+F:\DFrame\Models\bin\Debug\Models.pdb
+F:\DFrame\Models\bin\Debug\DFrame.Common.dll
+F:\DFrame\Models\bin\Debug\DFrame.Model.dll
+F:\DFrame\Models\bin\Debug\ThoughtWorks.QRCode.dll
+F:\DFrame\Models\bin\Debug\DFrame.Common.pdb
+F:\DFrame\Models\bin\Debug\DFrame.Common.xml
+F:\DFrame\Models\bin\Debug\DFrame.Model.pdb
+F:\DFrame\Models\bin\Debug\DFrame.Model.xml
+F:\DFrame\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+F:\DFrame\Models\obj\Debug\Models.dll
+F:\DFrame\Models\obj\Debug\Models.pdb

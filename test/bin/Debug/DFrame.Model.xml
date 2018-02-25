@@ -4,6 +4,158 @@
         <name>DFrame.Model</name>
     </assembly>
     <members>
+        <member name="T:DFrame.Model.DBFuncs">
+            <summary>
+            包含所有DBModel私有方法
+            </summary>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetSelectField``1(DFrame.Model.DBSelect,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据lambda表达式 生成查询字段
+            </summary>
+            <typeparam name="TSource">数据实体类型</typeparam>
+            <param name="_DBSelect">查询类</param>
+            <param name="func">lambda表达式</param>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetWhereExpression``1(DFrame.Model.DBWhere,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            根据lambda表达式 获取查询条件
+            </summary>
+            <typeparam name="TSource">数据实体类型</typeparam>
+            <param name="_DBWhere">条件类</param>
+            <param name="func">lambda表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetOrderBy``1(DFrame.Model.DBWhere,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据lambda表达式 获取升序排序字段
+            </summary>
+            <typeparam name="TSource">数据实体类型</typeparam> 
+            <param name="_DBWhere">条件类</param>
+            <param name="func">lambda表达式</param>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetOrderByDescending``1(DFrame.Model.DBWhere,System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据lambda表达式 获取降序排序字段
+            </summary>
+            <typeparam name="TSource">数据实体类型</typeparam> 
+            <param name="_DBWhere">条件类</param>
+            <param name="func">lambda表达式</param>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetBinaryExpressionSql(System.Linq.Expressions.BinaryExpression)">
+            <summary>
+            获取二元运算符表达式SQL语句
+            </summary>
+            <param name="exp">二元运算符表达式</param>
+            <returns>SQL语句</returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetExpressionNodeType(System.Linq.Expressions.ExpressionType)">
+            <summary>
+            转换获取SQL运算符
+            </summary>
+            <param name="type">ExpressionType</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetConstantExpression(System.Linq.Expressions.ConstantExpression)">
+            <summary>
+            获取常量值
+            </summary>
+            <param name="exp">ConstantExpression</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetConstantExpressionDateTime(System.Linq.Expressions.ConstantExpression)">
+            <summary>
+            获取DateTime含有变量的值
+            </summary>
+            <param name="exp">ConstantExpression</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetMethodCallExpression(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            获取用户方法返回值
+            </summary>
+            <param name="exp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetMethodCallExpressionContains(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            获取string.Contains
+            </summary>
+            <param name="exp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetMemberExpression(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            获取字段、字段bool类型value、datetime.now、dateTime类型变量
+            </summary>
+            <param name="exp">MemberExpression</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetMemberExpressionField(System.Linq.Expressions.MemberExpression)">
+            <summary>
+            获取实体字段
+            </summary>
+            <param name="exp">MemberExpression</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetLambdaExpression(System.Linq.Expressions.LambdaExpression)">
+            <summary>
+            描述lambda表达式的值
+            </summary>
+            <param name="exp">LambdaExpression</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetUnaryExpression(System.Linq.Expressions.UnaryExpression)">
+            <summary>
+            获取一元运算符表达式
+            </summary>
+            <param name="exp">UnaryExpression</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetOtherExpression(System.Linq.Expressions.Expression)">
+            <summary>
+            运算字符串
+            </summary>
+            <param name="exp">Expression</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.ConvertToList``1(System.Data.DataTable)">
+            <summary>
+            DataTable To T List
+            </summary>
+            <typeparam name="T">实体类</typeparam>
+            <param name="table">DataTable</param>
+            <returns>T List</returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetTable(DFrame.Model.DBSelect)">
+            <summary>
+            重数据库获数据
+            </summary>
+            <param name="_DBSelect">实体条件类</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetCount(DFrame.Model.DBSelect)">
+            <summary>
+            查询总数 MSSQLServer数据库
+            </summary>
+            <param name="_DBSelect">实体条件类</param>
+            <returns>总数</returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetList``1(DFrame.Model.DBSelect)">
+            <summary>
+            从数据库获取数据集合
+            </summary>
+            <typeparam name="TResult">获取实体类型</typeparam>
+            <param name="_DBSelect">实体条件类</param>
+            <returns>List集合</returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.Delete(DFrame.Model.DBSelect)">
+            <summary>
+            删除集合 MSSQLServer数据库
+            </summary>
+            <param name="_DBSelect">实体条件类</param>
+            <returns>总数</returns>
+        </member>
         <member name="T:DFrame.Model.DBFieldAttribute">
             <summary>
             数据库生成用属性
@@ -50,6 +202,97 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:DFrame.Model.DBModel.Select``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            DBModel查询
+            </summary>
+            <typeparam name="TSource">DBModel派生类</typeparam>
+            <param name="func">查询字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBModel.Select``1">
+            <summary>
+            DBModel查询所有
+            </summary>
+            <typeparam name="TSource">DBModel派生类</typeparam> 
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Model.DBSelect">
+            <summary>
+            实体查询类
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.DBSelect._SQLBase">
+            <summary>
+            SQL基类
+            </summary>
+        </member>
+        <member name="M:DFrame.Model.DBSelect.Where``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            DBSelect查询条件
+            </summary>
+            <typeparam name="TSource">DBModel派生类</typeparam>
+            <param name="func">查询字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBSelect.Where``1">
+            <summary>
+            DBSelect查询条件
+            </summary>
+            <typeparam name="TSource">DBModel派生类</typeparam>
+            <param name="func">查询字段</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Model.DBView">
+            <summary>
+            对视图实体提供数据库查询方法
+            </summary>
+        </member>
+        <member name="T:DFrame.Model.DBWhere">
+            <summary>
+            实体条件类 提供执行方法
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.DBWhere._DBSelect">
+            <summary>
+            查询类
+            </summary>
+        </member>
+        <member name="M:DFrame.Model.DBWhere.Count">
+            <summary>
+            符合条件数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBWhere.ToList``1">
+            <summary>
+            获取列表
+            </summary>
+            <typeparam name="TResult">获取集合实体类型</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBWhere.Delete">
+            <summary>
+            删除条件集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBWhere.OrderBy``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            升序排序
+            </summary>
+            <typeparam name="TSource">数据实体类型</typeparam> 
+            <param name="func">lambda表达式</param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBWhere.OrderByDescending``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            降序排序
+            </summary>
+            <typeparam name="TSource">数据实体类型</typeparam> 
+            <param name="func">lambda表达式</param>
+            <returns></returns>
+        </member>
         <member name="T:DFrame.Model.Enums">
             <summary>
             DFrame.Model所用的所有枚举
@@ -68,6 +311,51 @@
         <member name="F:DFrame.Model.Enums.DBFieldKey.Unique">
             <summary>
             用于唯一键。
+            </summary>
+        </member>
+        <member name="T:DFrame.Model.Result">
+            <summary>
+            系统返回参数
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.Result.result">
+            <summary>
+            状态参数
+            </summary>
+        </member>
+        <member name="P:DFrame.Model.Result.msg">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="T:DFrame.Model.SQLBase">
+            <summary>
+            DBModel查询基类
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.SQLBase.modelType">
+            <summary>
+            实体类型（与数据库表名对应）
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.SQLBase.select">
+            <summary>
+            实体的查询字段
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.SQLBase.where">
+            <summary>
+            实体的插叙条件
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.SQLBase.orderBy">
+            <summary>
+            实体的排序字段及方式
+            </summary>
+        </member>
+        <member name="F:DFrame.Model.SQLBase.querySql">
+            <summary>
+            实体最终查询语句
             </summary>
         </member>
     </members>

@@ -1,5 +1,0 @@
-H:\DFrame\DFrame.Linq\bin\Debug\DFrame.Linq.dll
-H:\DFrame\DFrame.Linq\bin\Debug\DFrame.Linq.pdb
-H:\DFrame\DFrame.Linq\obj\Debug\DFrame.Linq.csprojResolveAssemblyReference.cache
-H:\DFrame\DFrame.Linq\obj\Debug\DFrame.Linq.dll
-H:\DFrame\DFrame.Linq\obj\Debug\DFrame.Linq.pdb

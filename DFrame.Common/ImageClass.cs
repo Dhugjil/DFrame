@@ -40,8 +40,8 @@ namespace DFrame.Common
             int ow = originalImage.Width;
             int oh = originalImage.Height;
 
-            float _ohw = (float)oh / ow;//原图 高宽比例
-            float _nhw = (float)height / width;//新图 高宽比例
+            float _ohw = oh / ow;//原图 高宽比例
+            float _nhw = height / width;//新图 高宽比例
 
             if (_ohw >= _nhw)// 原图 等宽-偏高
             {

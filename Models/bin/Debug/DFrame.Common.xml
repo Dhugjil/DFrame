@@ -439,6 +439,15 @@
             图片操作构造函数
             </summary>
         </member>
+        <member name="M:DFrame.Common.ImageClass.CatMakeThumbnail(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            中部剪取生成缩略图
+            </summary>
+            <param name="originalImagePath">源图路径（物理路径）</param>
+            <param name="thumbnailPath">缩略图路径（物理路径）</param>
+            <param name="width">缩略图宽度</param>
+            <param name="height">缩略图高度</param> 
+        </member>
         <member name="M:DFrame.Common.ImageClass.MakeThumbnail(System.String,System.String,System.Int32,System.Int32,DFrame.Common.Enums.ImageThumbnailMode)">
             <summary>
             生成缩略图
@@ -609,6 +618,47 @@
             </summary>
             <param name="obj">对象</param>
             <returns>json字符串</returns>
+        </member>
+        <member name="T:DFrame.Common.ListComparer`1">
+            <summary>
+            按实体字段去重
+            </summary>
+            <typeparam name="T">实体类型</typeparam>
+        </member>
+        <member name="T:DFrame.Common.ListComparer`1.EqualsConparer`1">
+            <summary>
+            定义代理
+            </summary>
+            <typeparam name="F">实体类型</typeparam>
+            <param name="x">实体</param>
+            <param name="y">实体</param>
+            <returns></returns>
+        </member>
+        <member name="F:DFrame.Common.ListComparer`1._equalsConparer">
+            <summary>
+            存储代理
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.ListComparer`1.#ctor(DFrame.Common.ListComparer{`0}.EqualsConparer{`0})">
+            <summary>
+            去重字段 (p1,p2)=>(p1.Feild == p2.Feild)
+            </summary>
+            <param name="equalsConparer"></param>
+        </member>
+        <member name="M:DFrame.Common.ListComparer`1.Equals(`0,`0)">
+            <summary>
+            比较
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Common.ListComparer`1.GetHashCode(`0)">
+            <summary>
+            获取哈希值
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
         </member>
         <member name="T:DFrame.Common.Mail">
             <summary>  
@@ -815,6 +865,55 @@
             发送电子邮件。  
             </summary>  
             <returns>是否发送成功。</returns>  
+        </member>
+        <member name="T:DFrame.Common.CreateKey">
+            <summary>
+            生成公钥类
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.CreateKey.PublicKey">
+            <summary>
+            创建公钥2分钟有效
+            </summary>
+            <returns>0当前公钥 1前一分钟公钥</returns>
+        </member>
+        <member name="M:DFrame.Common.CreateKey.GuidKey(System.String)">
+            <summary>
+            生成Guid字符串
+            
+            null// 9af7f46a-ea52-4aa3-b8c3-9fd484c2af12
+            N// e0a953c3ee6040eaa9fae2b667060e09
+            D// 9af7f46a-ea52-4aa3-b8c3-9fd484c2af12
+            B// {734fd453-a4f8-4c5d-9c98-3fe2d7079760}
+            P//  (ade24d16-db0f-40af-8794-1e08e2040df3)
+            X// {0x3fa412e3,0x8356,0x428f,{0xaa,0x34,0xb7,0x40,0xda,0xaf,0x45,0x6f}}
+            </summary>
+            <param name="type">字符串格式</param>
+            <returns></returns>
+        </member>
+        <member name="T:DFrame.Common.QRCode">
+            <summary>
+            生成二维码和解读二维码
+            </summary>
+        </member>
+        <member name="M:DFrame.Common.QRCode.Encoder(System.String,System.Text.Encoding,ThoughtWorks.QRCode.Codec.QRCodeEncoder.ENCODE_MODE,ThoughtWorks.QRCode.Codec.QRCodeEncoder.ERROR_CORRECTION,System.Int32,System.Int32)">
+            <summary>
+            生成QRCode
+            </summary>
+            <param name="data">生成字符串</param>
+            <param name="data_encoding">字符串编码格式</param>
+            <param name="encode_mode">编码模式</param>
+            <param name="error_correction">容错级别L:7% M:15% Q:25% H:30%（微信短连接建议L）</param>
+            <param name="version">版本1-40（微信短链接建议4）</param>
+            <param name="scale">大小尺寸（微信短链接建议4）</param>
+            <returns>二维码image</returns>
+        </member>
+        <member name="M:DFrame.Common.QRCode.Decoder(System.Drawing.Image)">
+            <summary>
+            QRCode解码
+            </summary>
+            <param name="image">图片信息</param>
+            <returns>解码信息</returns>
         </member>
         <member name="T:DFrame.Common.SMS">
             <summary>
