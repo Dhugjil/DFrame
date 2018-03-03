@@ -34,3 +34,15 @@ F:\DFrame\Models\bin\Debug\DFrame.Model.xml
 F:\DFrame\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
 F:\DFrame\Models\obj\Debug\Models.dll
 F:\DFrame\Models\obj\Debug\Models.pdb
+D:\GitHub\DFrame\Models\bin\Debug\Models.dll
+D:\GitHub\DFrame\Models\bin\Debug\Models.pdb
+D:\GitHub\DFrame\Models\bin\Debug\DFrame.Common.dll
+D:\GitHub\DFrame\Models\bin\Debug\DFrame.Model.dll
+D:\GitHub\DFrame\Models\bin\Debug\ThoughtWorks.QRCode.dll
+D:\GitHub\DFrame\Models\bin\Debug\DFrame.Common.pdb
+D:\GitHub\DFrame\Models\bin\Debug\DFrame.Common.xml
+D:\GitHub\DFrame\Models\bin\Debug\DFrame.Model.pdb
+D:\GitHub\DFrame\Models\bin\Debug\DFrame.Model.xml
+D:\GitHub\DFrame\Models\obj\Debug\Models.csprojResolveAssemblyReference.cache
+D:\GitHub\DFrame\Models\obj\Debug\Models.dll
+D:\GitHub\DFrame\Models\obj\Debug\Models.pdb

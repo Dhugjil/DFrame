@@ -22,3 +22,14 @@ J:\DFrame\DFrame.Common\bin\Debug\ThoughtWorks.QRCode.dll
 J:\DFrame\DFrame.Common\obj\Debug\DFrame.Common.csprojResolveAssemblyReference.cache
 H:\DFrame\DFrame.Common\bin\Debug\ThoughtWorks.QRCode.dll
 H:\DFrame\DFrame.Common\obj\Debug\DFrame.Common.csprojResolveAssemblyReference.cache
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\DFrame.Common.XML
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\DFrame.Common.dll
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\DFrame.Common.pdb
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\System.Data.dll
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\System.dll
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\System.Drawing.dll
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\System.Web.dll
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\System.Web.Extensions.dll
+D:\GitHub\DFrame\DFrame.Common\bin\Debug\ThoughtWorks.QRCode.dll
+D:\GitHub\DFrame\DFrame.Common\obj\Debug\DFrame.Common.dll
+D:\GitHub\DFrame\DFrame.Common\obj\Debug\DFrame.Common.pdb

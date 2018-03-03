@@ -56,11 +56,12 @@
             <param name="type">ExpressionType</param>
             <returns></returns>
         </member>
-        <member name="M:DFrame.Model.DBFuncs.GetConstantExpression(System.Linq.Expressions.ConstantExpression)">
+        <member name="M:DFrame.Model.DBFuncs.GetConstantExpression(System.Linq.Expressions.ConstantExpression,System.Type)">
             <summary>
-            获取常量值
+            获取常量值(处理lambda里直接赋值的条件)
             </summary>
             <param name="exp">ConstantExpression</param>
+            <param name="returnType">返回类型</param>
             <returns></returns>
         </member>
         <member name="M:DFrame.Model.DBFuncs.GetConstantExpressionDateTime(System.Linq.Expressions.ConstantExpression)">
@@ -84,11 +85,27 @@
             <param name="exp"></param>
             <returns></returns>
         </member>
+        <member name="M:DFrame.Model.DBFuncs.GetDicValue(System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.Stack{System.String})">
+            <summary>
+            获取多次嵌套对象的值
+            </summary>
+            <param name="dic"></param>
+            <param name="memberNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:DFrame.Model.DBFuncs.GetObjectGetConstantExpression(System.Linq.Expressions.MemberExpression,System.Collections.Generic.Stack{System.String})">
+            <summary>
+            从类Object对象中获取值（20180303）
+            </summary>
+            <param name="exp"></param>
+            <param name="memberNames">获取字段名父子集合</param>
+            <returns></returns>
+        </member>
         <member name="M:DFrame.Model.DBFuncs.GetMemberExpression(System.Linq.Expressions.MemberExpression)">
             <summary>
-            获取字段、字段bool类型value、datetime.now、dateTime类型变量
+            获取字段、属性值
             </summary>
-            <param name="exp">MemberExpression</param>
+            <param name="exp"></param>
             <returns></returns>
         </member>
         <member name="M:DFrame.Model.DBFuncs.GetMemberExpressionField(System.Linq.Expressions.MemberExpression)">

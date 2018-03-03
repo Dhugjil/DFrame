@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web.Script.Serialization;
+using System.CodeDom.Compiler;
 
 namespace DFrame.Model
 {
@@ -251,19 +252,26 @@ namespace DFrame.Model
             }
         }
         /// <summary>
-        /// 获取常量值
+        /// 获取常量值(处理lambda里直接赋值的条件)
         /// </summary>
         /// <param name="exp">ConstantExpression</param>
+        /// <param name="returnType">返回类型</param>
         /// <returns></returns>
-        private static string GetConstantExpression(ConstantExpression exp)
+        private static string GetConstantExpression(ConstantExpression exp, Type returnType)
         {
             if (exp.Value == null)
                 return "NULL";
-
-            if (exp.Type == typeof(bool))
+            else if (returnType == typeof(bool) || returnType == typeof(bool?))
                 return (bool)exp.Value ? "(1 = 1)" : "(1 = 0)";
+            if (returnType == typeof(DateTime) || returnType == typeof(DateTime?))
+                return GetConstantExpressionDateTime(exp);
+
+            JavaScriptSerializer jss = new JavaScriptSerializer();
+            string str = jss.Serialize(exp.Value);
+            if (str.Substring(0, 1) == "\"")
+                return "'" + str.Substring(1, str.Length - 2) + "'";
             else
-                return "'" + exp.Value.ToString() + "'";
+                return str;
         }
         /// <summary>
         /// 获取DateTime含有变量的值
@@ -325,18 +333,91 @@ namespace DFrame.Model
             return "(" + field + " LIKE '%" + arg.Replace("'", "") + "%')";
         }
         /// <summary>
-        /// 获取字段、字段bool类型value、datetime.now、dateTime类型变量
+        /// 获取多次嵌套对象的值
         /// </summary>
-        /// <param name="exp">MemberExpression</param>
+        /// <param name="dic"></param>
+        /// <param name="memberNames"></param>
+        /// <returns></returns>
+        private static object GetDicValue(Dictionary<string, object> dic, Stack<string> memberNames)
+        {
+            string name = memberNames.Pop();
+            object value = string.Empty;
+
+            foreach (var item in dic)
+            {
+                if (item.Key == name)
+                {
+                    if (item.Value is Dictionary<string, object>)
+                    {
+                        value = GetDicValue((Dictionary<string, object>)item.Value, memberNames);
+                    }
+                    else
+                    {
+                        if (item.Value == null)
+                            return "NULL";
+                        else
+                            return "'" + item.Value.ToString() + "'";
+                    }
+                }
+            }
+            return value;
+        }
+        /// <summary>
+        /// 从类Object对象中获取值（20180303）
+        /// </summary>
+        /// <param name="exp"></param>
+        /// <param name="memberNames">获取字段名父子集合</param>
+        /// <returns></returns>
+        private static object GetObjectGetConstantExpression(MemberExpression exp, Stack<string> memberNames)
+        {
+            if (exp.Expression is ConstantExpression)
+            {
+                ConstantExpression constant = (ConstantExpression)exp.Expression;
+                JavaScriptSerializer jss = new JavaScriptSerializer();
+                string str = jss.Serialize(constant.Value);
+                Dictionary<string, object> dic = (Dictionary<string, object>)jss.DeserializeObject(str);
+                memberNames.Push(exp.Member.Name);
+                return GetDicValue(dic, memberNames);
+            }
+            else if (exp.Expression is MemberExpression)
+            {
+                memberNames.Push(exp.Member.Name);
+                return GetObjectGetConstantExpression((MemberExpression)exp.Expression, memberNames);
+            }
+
+            throw new Exception("GetOtherExpression-GetObjectMemberExpression-:" + exp.ToString());
+        }
+        /// <summary>
+        /// 获取字段、属性值
+        /// </summary>
+        /// <param name="exp"></param>
         /// <returns></returns>
         private static string GetMemberExpression(MemberExpression exp)
         {
-            if (exp.Type == typeof(DateTime) && exp.Expression is ConstantExpression)
-                return GetConstantExpressionDateTime((ConstantExpression)exp.Expression);
+            if (exp.Expression is ConstantExpression)
+            {
+                if (string.IsNullOrWhiteSpace(exp.Member.Name))
+                    return GetConstantExpression((ConstantExpression)exp.Expression, exp.Type);
+                else
+                {
+                    Stack<string> memberNames = new Stack<string>();
+                    return GetObjectGetConstantExpression(exp, memberNames).ToString();
+                }
+            }
+            else if (exp.Expression is MemberExpression)
+            {
+                if (exp.Type == typeof(bool) && exp.Expression.Type.Name.Contains("Nullable"))
+                    throw new Exception("不支持Nullable~.Value");
+                else
+                {
+                    Stack<string> memberNames = new Stack<string>();
+                    memberNames.Push(exp.Member.Name);
+                    return GetObjectGetConstantExpression((MemberExpression)exp.Expression, memberNames).ToString();
+                }
+            }
+
             if (exp.Type == typeof(DateTime) && exp.Member.Name == "Now")
                 return "GETDATE()";
-            if (exp.Type == typeof(bool) && exp.Expression is MemberExpression && exp.Expression.Type.Name.Contains("Nullable"))
-                return GetMemberExpressionField((MemberExpression)exp.Expression) + " IS NOT NULL";
             if (exp.Type != typeof(bool) && !exp.Expression.Type.Name.Contains("Nullable"))
                 return exp.Expression.Type.Name + "." + exp.Member.Name;
 
@@ -359,7 +440,7 @@ namespace DFrame.Model
         private static string GetLambdaExpression(LambdaExpression exp)
         {
             if (exp.Body is ConstantExpression)
-                return GetConstantExpression((ConstantExpression)exp.Body);
+                return GetConstantExpression((ConstantExpression)exp.Body, exp.ReturnType);//字段名没有吧？？？？不是局部变量
             if (exp.Body is MethodCallExpression)
                 return GetMethodCallExpression((MethodCallExpression)exp.Body);
             if (exp.Body is MemberExpression)
@@ -402,6 +483,9 @@ namespace DFrame.Model
             if (exp.Operand is MemberExpression)
                 return GetMemberExpression((MemberExpression)exp.Operand);
 
+            if (exp.Operand is MethodCallExpression)
+                return GetMethodCallExpression((MethodCallExpression)exp.Operand);
+
             throw new Exception("GetUnaryExpression");
         }
         /// <summary>
@@ -414,7 +498,7 @@ namespace DFrame.Model
             if (exp is MemberExpression)
                 return GetMemberExpression((MemberExpression)exp);
             if (exp is ConstantExpression)
-                return GetConstantExpression((ConstantExpression)exp);
+                return GetConstantExpression((ConstantExpression)exp, exp.Type);//后两个参数不确定
             if (exp is MethodCallExpression)
                 return GetMethodCallExpression((MethodCallExpression)exp);
             if (exp is LambdaExpression)

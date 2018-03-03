@@ -15,3 +15,8 @@ F:\DFrame\DFrame.Model\bin\Debug\DFrame.Model.pdb
 F:\DFrame\DFrame.Model\obj\Debug\DFrame.Model.csprojResolveAssemblyReference.cache
 F:\DFrame\DFrame.Model\obj\Debug\DFrame.Model.dll
 F:\DFrame\DFrame.Model\obj\Debug\DFrame.Model.pdb
+D:\GitHub\DFrame\DFrame.Model\bin\Debug\DFrame.Model.XML
+D:\GitHub\DFrame\DFrame.Model\bin\Debug\DFrame.Model.dll
+D:\GitHub\DFrame\DFrame.Model\bin\Debug\DFrame.Model.pdb
+D:\GitHub\DFrame\DFrame.Model\obj\Debug\DFrame.Model.dll
+D:\GitHub\DFrame\DFrame.Model\obj\Debug\DFrame.Model.pdb

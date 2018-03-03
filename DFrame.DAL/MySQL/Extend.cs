@@ -33,7 +33,11 @@ namespace DFrame.DAL.MySQL
                     //获取字段类型 下面根据字段类型加引号之类sql语句
                     Type attType = propertyInfo.PropertyType;
 
-                    if (attType == typeof(int) || attType == typeof(int?))
+                    if (attType == typeof(long) || attType == typeof(long?))
+                    {
+                        modelStr.Add(" " + propertyInfo.Name + " = " + ((long)propertyInfo.GetValue(model)).ToString());
+                    }
+                    else if (attType == typeof(int) || attType == typeof(int?))
                     {
                         modelStr.Add(" " + tableName + "." + propertyInfo.Name + " = " + ((int)propertyInfo.GetValue(model)).ToString());
                     }

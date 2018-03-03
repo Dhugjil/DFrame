@@ -39,3 +39,15 @@ F:\DFrame\DFrame.DAL\bin\Debug\MySql.Data.xml
 F:\DFrame\DFrame.DAL\obj\Debug\DFrame.DAL.csprojResolveAssemblyReference.cache
 F:\DFrame\DFrame.DAL\obj\Debug\DFrame.DAL.dll
 F:\DFrame\DFrame.DAL\obj\Debug\DFrame.DAL.pdb
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\DFrame.DAL.XML
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\DFrame.DAL.dll
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\DFrame.DAL.pdb
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\DFrame.Model.dll
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\System.Configuration.dll
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\System.Data.dll
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\System.dll
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\DFrame.Model.pdb
+D:\GitHub\DFrame\DFrame.DAL\bin\Debug\DFrame.Model.xml
+D:\GitHub\DFrame\DFrame.DAL\obj\Debug\DFrame.DAL.csprojResolveAssemblyReference.cache
+D:\GitHub\DFrame\DFrame.DAL\obj\Debug\DFrame.DAL.dll
+D:\GitHub\DFrame\DFrame.DAL\obj\Debug\DFrame.DAL.pdb
