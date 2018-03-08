@@ -37,6 +37,7 @@
     <Compile Include="EncryptDecrypt\DES.cs" />
     <Compile Include="EncryptDecrypt\HmacSha.cs" />
     <Compile Include="EncryptDecrypt\MD5.cs" />
+    <Compile Include="EncryptDecrypt\RSA.cs" />
     <Compile Include="EncryptDecrypt\SHA.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="HttpService.cs" />
@@ -45,7 +46,6 @@
     <Compile Include="ListComparer.cs" />
     <Compile Include="Mail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PublicKey.cs" />
     <Compile Include="QRCode.cs" />
     <Compile Include="SMS.cs" />
     <Compile Include="TextError.cs" />

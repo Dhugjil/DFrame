@@ -14,7 +14,7 @@ namespace Models
         /// <summary>
         /// 型字
         /// </summary>
-        [DFrame.Model.DBField(NotNull = true)]
+        [DFrame.Model.DBField(NotNull = true,DBFieldKey =DFrame.Model.Enums.DBFieldKey.Unique,DefaultValue ="默认",ForeignKey =typeof(Person),Lenght =4001)]
         public string Text { get; set; }
         /// <summary>
         /// 创建时间

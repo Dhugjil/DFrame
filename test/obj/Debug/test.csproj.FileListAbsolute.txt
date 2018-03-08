@@ -80,3 +80,6 @@ D:\GitHub\DFrame\test\bin\Debug\DFrame.Model.pdb
 D:\GitHub\DFrame\test\bin\Debug\DFrame.Model.xml
 D:\GitHub\DFrame\test\bin\Debug\Models.pdb
 D:\GitHub\DFrame\test\obj\Debug\test.csprojResolveAssemblyReference.cache
+E:\GitHub\DFrame\DFrame\test\bin\Debug\test.exe.config
+E:\GitHub\DFrame\DFrame\test\obj\Debug\test.exe
+E:\GitHub\DFrame\DFrame\test\obj\Debug\test.pdb
