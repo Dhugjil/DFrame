@@ -14,7 +14,8 @@ namespace DFrame.Common
         public static string[] PublicKey()
         {
             string[] public_key = new string[2];
-            string yan = ",./;'[]{}:\"><这些乱码是不是很乱。哈哈 DFrame（yusang_hugjil@163.com）><&^$^%#!@!$#$^%&^";
+            throw new Exception();
+            string yan = "yusang_hugjil@163.com";
             public_key[0] = EncryptDecrypt.MD5.GetAbstractToMD5(EncryptDecrypt.MD5.GetAbstractToMD5(DateTime.Now.ToString("yyyy-MM-dd HH:mm") + yan) + yan);
             public_key[1] = EncryptDecrypt.MD5.GetAbstractToMD5(EncryptDecrypt.MD5.GetAbstractToMD5(DateTime.Now.AddMinutes(-1).ToString("yyyy-MM-dd HH:mm") + yan) + yan);
             return public_key;
